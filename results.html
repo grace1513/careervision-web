@@ -48,6 +48,12 @@
         href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/regular/style.css"
     >
 
+        <!-- Hover / auto-cycling background system -->
+    <link
+        href="css/bg-hover.css"
+        rel="stylesheet"
+    >
+
 
     <!-- =========================================
          CSS FILES
@@ -104,32 +110,31 @@
         <div class="logo">
             CareerVision
         </div>
-
-
-        <nav aria-label="Main navigation">
+         
+                <nav aria-label="Main navigation">
 
             <ul>
 
                 <li>
-                    <a href="index.html">
+                    <a href="index.html" data-bg="Images/nav-home.jpg">
                         Home
                     </a>
                 </li>
 
                 <li>
-                    <a href="index.html#paths">
+                    <a href="index.html#features" data-bg="Images/nav-paths.jpg">
                         Paths
                     </a>
                 </li>
 
                 <li>
-                    <a href="index.html#about">
+                    <a href="index.html#about" data-bg="Images/nav-about.jpg">
                         About
                     </a>
                 </li>
 
                 <li>
-                    <a href="contact.html">
+                    <a href="contact.html" data-bg="Images/nav-contact.jpg">
                         Contact
                     </a>
                 </li>
@@ -137,7 +142,7 @@
             </ul>
 
         </nav>
-
+        
 
         <a
             href="index.html#registration"
@@ -822,70 +827,51 @@
 
 
 
-    <!-- =========================================
+        <!-- =========================================
          FOOTER
+         (matches index.html / contact.html: brand +
+         link columns, not the old contact/logo layout)
     ========================================== -->
 
     <footer class="footer">
 
-
         <div class="footer-content">
 
+            <div class="footer-brand">
 
-            <div class="footer-contact">
-
-                <h3>
-                    Contact Us
-                </h3>
-
+                <h2>CareerVision</h2>
 
                 <p>
-
-                    Email:
-
-                    <a href="mailto:info@careervision.com">
-                        info@careervision.com
-                    </a>
-
+                    Helping software engineering students
+                    discover the career path that fits them best.
                 </p>
 
             </div>
 
 
+            <div class="footer-links">
 
-            <div class="footer-logo">
+                <h3>Quick Links</h3>
 
-                <h2>
-                    CareerVision
-                </h2>
+                <a href="index.html">Home</a>
+                <a href="index.html#features">Paths</a>
+                <a href="index.html#about">About</a>
+                <a href="contact.html">Contact</a>
 
             </div>
-
 
 
             <div class="footer-links">
 
-                <a href="index.html">
-                    Home
-                </a>
+                <h3>Start Your Journey</h3>
 
-                <a href="index.html#paths">
-                    Paths
-                </a>
-
-                <a href="index.html#about">
-                    About
-                </a>
-
-                <a href="contact.html">
-                    Contact
+                <a href="index.html#registration">
+                    Take the Assessment
                 </a>
 
             </div>
 
-
         </div>
-
 
 
         <div class="footer-bottom">
@@ -896,9 +882,7 @@
 
         </div>
 
-
     </footer>
-
 
 
     <!-- =========================================
@@ -910,7 +894,18 @@
         defer
     ></script>
 
+    <script
+        src="js/results.js"
+        defer
+    ></script>
+
+    <script
+        src="js/bg-hover.js"
+        defer
+    ></script>
+
 
 </body>
+
 
 </html>

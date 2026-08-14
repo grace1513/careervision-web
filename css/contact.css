@@ -192,6 +192,15 @@ h1, h2, h3{
     font-size: 15px;
 }
 
+.contact-item p a{
+    color: var(--color-accent);
+    text-decoration: underline;
+}
+
+.contact-item p a:hover{
+    color: var(--color-text-light);
+}
+
 
 /* =========================================
    CONTACT FORM
@@ -239,9 +248,15 @@ h1, h2, h3{
     box-shadow: 0 0 0 3px rgba(45, 90, 74, .15);
 }
 
-.form-group input.invalid,
-.form-group textarea.invalid{
+.form-group input.is-invalid,
+.form-group textarea.is-invalid{
     border-color: #d64545;
+}
+
+/* NEW: positive confirmation state */
+.form-group input.is-valid,
+.form-group textarea.is-valid{
+    border-color: #2f9e5c;
 }
 
 .error-message{

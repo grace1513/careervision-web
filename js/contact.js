@@ -50,10 +50,12 @@ document.addEventListener("DOMContentLoaded", () => {
         const isValid = rule.pattern.test(value);
 
         if (isValid) {
-            input.classList.remove("invalid");
+            input.classList.remove("is-invalid");
+            input.classList.add("is-valid");
             if (errorEl) errorEl.textContent = "";
         } else {
-            input.classList.add("invalid");
+            input.classList.remove("is-valid");
+            input.classList.add("is-invalid");
             if (errorEl) errorEl.textContent = rule.message;
         }
 
@@ -66,7 +68,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         input.addEventListener("blur", () => validateField(key));
         input.addEventListener("input", () => {
-            if (input.classList.contains("invalid")) validateField(key);
+            if (input.classList.contains("is-invalid")) validateField(key);
         });
     });
 
@@ -80,7 +82,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         if (!allValid) {
             const firstInvalidKey = Object.keys(fields).find(
-                (key) => fields[key].classList.contains("invalid")
+                (key) => fields[key].classList.contains("is-invalid")
             );
             if (firstInvalidKey) fields[firstInvalidKey].focus();
             return;
@@ -99,7 +101,10 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         form.reset();
-        Object.values(fields).forEach((input) => input.classList.remove("invalid"));
+        Object.values(fields).forEach((input) => {
+            input.classList.remove("is-invalid");
+            input.classList.remove("is-valid");
+        });
     });
 
 });

@@ -45,9 +45,9 @@
             </ul>
         </nav>
 
-        <!-- FIX: was index.html#registration — that section no longer
-             exists, registration now lives at register.html -->
-        <a href="register.html" class="nav-button">
+        <!-- FIX: registration now lives on index.html itself,
+             not a separate page -->
+        <a href="index.html#registration" class="nav-button">
             Get Started
         </a>
 
@@ -94,195 +94,29 @@
                 <div class="contact-details">
 
                     <div class="contact-item">
+                        <i class="ph ph-user"></i>
+
+                        <div>
+                            <h3>Developer</h3>
+                            <!-- PLACEHOLDER: replace with your real name and student ID -->
+                            <p>Grace UMWIZA — Student ID: BSExxxxxxxx</p>
+                        </div>
+                    </div>
+
+
+                    <div class="contact-item">
+                        <i class="ph ph-graduation-cap"></i>
+
+                        <div>
+                            <h3>Course</h3>
+                            <p>BSE Specialisation Advisor — African Leadership College</p>
+                        </div>
+                    </div>
+
+
+                    <div class="contact-item">
                         <i class="ph ph-envelope-simple"></i>
 
                         <div>
                             <h3>Email</h3>
                             <p>careervision@example.com</p>
-                        </div>
-                    </div>
-
-
-                    <div class="contact-item">
-                        <i class="ph ph-map-pin"></i>
-
-                        <div>
-                            <h3>Location</h3>
-                            <p>African Leadership College</p>
-                        </div>
-                    </div>
-
-
-                    <div class="contact-item">
-                        <i class="ph ph-github-logo"></i>
-
-                        <div>
-                            <h3>GitHub</h3>
-                            <p>Explore our project</p>
-                        </div>
-                    </div>
-
-                </div>
-
-            </div>
-
-
-            <!-- Contact Form -->
-            <div class="contact-form-container">
-
-                <h2>Send Us a Message</h2>
-
-                <form id="contactForm" novalidate>
-
-                    <!-- Name -->
-                    <div class="form-group">
-
-                        <label for="name">Full Name</label>
-
-                        <input
-                            type="text"
-                            id="name"
-                            name="name"
-                            placeholder="Enter your full name"
-                            required
-                        >
-
-                        <small class="error-message" id="nameError"></small>
-
-                    </div>
-
-
-                    <!-- Email -->
-                    <div class="form-group">
-
-                        <label for="email">Email Address</label>
-
-                        <input
-                            type="email"
-                            id="email"
-                            name="email"
-                            placeholder="Enter your email address"
-                            required
-                        >
-
-                        <small class="error-message" id="emailError"></small>
-
-                    </div>
-
-
-                    <!-- Subject -->
-                    <div class="form-group">
-
-                        <label for="subject">Subject</label>
-
-                        <input
-                            type="text"
-                            id="subject"
-                            name="subject"
-                            placeholder="What is your message about?"
-                            required
-                        >
-
-                        <small class="error-message" id="subjectError"></small>
-
-                    </div>
-
-
-                    <!-- Message -->
-                    <div class="form-group">
-
-                        <label for="message">Message</label>
-
-                        <textarea
-                            id="message"
-                            name="message"
-                            rows="6"
-                            placeholder="Write your message here..."
-                            required
-                        ></textarea>
-
-                        <small class="error-message" id="messageError"></small>
-
-                    </div>
-
-
-                    <!-- Submit -->
-                    <button type="submit" class="submit-button">
-                        Send Message
-                        <i class="ph ph-paper-plane-tilt"></i>
-                    </button>
-
-                    <p id="formSuccess" class="success-message"></p>
-
-                </form>
-
-            </div>
-
-        </section>
-
-    </main>
-
-
-    <!-- ================= FOOTER ================= -->
-    <footer class="footer">
-
-        <div class="footer-content">
-
-            <div class="footer-brand">
-
-                <h2>CareerVision</h2>
-
-                <p>
-                    Helping software engineering students
-                    discover the career path that fits them best.
-                </p>
-
-            </div>
-
-
-            <div class="footer-links">
-
-                <h3>Quick Links</h3>
-
-                <a href="index.html">Home</a>
-                <a href="index.html#features">Paths</a>
-                <a href="index.html#about">About</a>
-                <a href="contact.html">Contact</a>
-
-            </div>
-
-
-            <div class="footer-links">
-
-                <h3>Start Your Journey</h3>
-
-                <!-- FIX: was index.html#registration -->
-                <a href="register.html">
-                    Take the Assessment
-                </a>
-
-            </div>
-
-        </div>
-
-
-        <div class="footer-bottom">
-
-            <p>
-                &copy; 2026 CareerVision. All rights reserved.
-            </p>
-
-        </div>
-
-    </footer>
-
-
-    <!-- JavaScript -->
-    <!-- FIX: was js/validation.js, which only knows about the
-         registration form's fields — this page needs its own script. -->
-    <script src="js/contact.js" defer></script>
-    <script src="js/bg-hover.js" defer></script>
-
-</body>
-
-</html>

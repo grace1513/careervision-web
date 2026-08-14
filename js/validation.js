@@ -67,11 +67,15 @@ document.addEventListener("DOMContentLoaded", () => {
         const errorEl = input.closest(".form-group")?.querySelector(".error-message");
 
         if (isValid) {
-            input.classList.remove("invalid");
+            // Positive confirmation state — green border, no error text
+            input.classList.remove("is-invalid");
+            input.classList.add("is-valid");
             input.setAttribute("aria-invalid", "false");
             if (errorEl) errorEl.style.display = "none";
         } else {
-            input.classList.add("invalid");
+            // Error state — red border + visible message
+            input.classList.remove("is-valid");
+            input.classList.add("is-invalid");
             input.setAttribute("aria-invalid", "true");
             if (errorEl) {
                 errorEl.textContent = rule.message;
@@ -94,7 +98,7 @@ document.addEventListener("DOMContentLoaded", () => {
         input.addEventListener("blur", () => validateField(key));
 
         input.addEventListener("input", () => {
-            if (input.classList.contains("invalid")) {
+            if (input.classList.contains("is-invalid")) {
                 validateField(key);
             }
         });
@@ -116,7 +120,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         if (!allValid) {
             const firstInvalidKey = Object.keys(fields).find(
-                (key) => fields[key].classList.contains("invalid")
+                (key) => fields[key].classList.contains("is-invalid")
             );
             if (firstInvalidKey) fields[firstInvalidKey].focus();
             return;

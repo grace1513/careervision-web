@@ -1,0 +1,916 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <!-- =========================================
+         BASIC DOCUMENT INFORMATION
+    ========================================== -->
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="description"
+        content="CareerVision results show your recommended software engineering specialization, skills, careers, and learning resources."
+    >
+
+
+    <!-- =========================================
+         GOOGLE FONTS
+    ========================================== -->
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap"
+        rel="stylesheet"
+    >
+
+
+    <!-- =========================================
+         PHOSPHOR ICONS
+    ========================================== -->
+
+    <link
+        rel="stylesheet"
+        type="text/css"
+        href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/regular/style.css"
+    >
+
+
+    <!-- =========================================
+         CSS FILES
+    ========================================== -->
+
+    <!-- Shared variables -->
+    <link
+        href="css/variables.css"
+        rel="stylesheet"
+    >
+
+    <!-- Shared header and footer -->
+    <link
+        href="css/home.css"
+        rel="stylesheet"
+    >
+
+    <!-- Results-specific styling -->
+    <link
+        href="css/results.css"
+        rel="stylesheet"
+    >
+
+
+    <title>
+        CareerVision | Your Results
+    </title>
+
+</head>
+
+
+<body>
+
+
+    <!-- =========================================
+         ACCESSIBILITY
+    ========================================== -->
+
+    <a
+        href="#main-content"
+        class="skip-link"
+    >
+        Skip to main content
+    </a>
+
+
+
+    <!-- =========================================
+         HEADER
+    ========================================== -->
+
+    <header class="navbar">
+
+        <div class="logo">
+            CareerVision
+        </div>
+
+
+        <nav aria-label="Main navigation">
+
+            <ul>
+
+                <li>
+                    <a href="index.html">
+                        Home
+                    </a>
+                </li>
+
+                <li>
+                    <a href="index.html#paths">
+                        Paths
+                    </a>
+                </li>
+
+                <li>
+                    <a href="index.html#about">
+                        About
+                    </a>
+                </li>
+
+                <li>
+                    <a href="contact.html">
+                        Contact
+                    </a>
+                </li>
+
+            </ul>
+
+        </nav>
+
+
+        <a
+            href="index.html#registration"
+            class="cta-button"
+        >
+            Get Started
+        </a>
+
+    </header>
+
+
+
+    <!-- =========================================
+         MAIN RESULTS CONTENT
+    ========================================== -->
+
+    <main
+        id="main-content"
+        class="results-page"
+    >
+
+
+        <!-- =====================================
+             RESULTS INTRODUCTION
+        ====================================== -->
+
+        <section class="results-hero">
+
+            <span class="eyebrow">
+                Your CareerVision Result
+            </span>
+
+
+            <h1>
+                Your Software Engineering Path
+            </h1>
+
+
+            <p>
+                Based on your answers, CareerVision has identified
+                the specialization that best matches your interests,
+                strengths, and career goals.
+            </p>
+
+        </section>
+
+
+
+        <!-- =====================================
+             RECOMMENDATION
+        ====================================== -->
+
+        <section class="recommendation-section">
+
+
+            <div class="recommendation-card">
+
+
+                <div class="recommendation-icon">
+
+                    <i
+                        class="ph ph-sparkle"
+                        aria-hidden="true"
+                    ></i>
+
+                </div>
+
+
+                <span class="eyebrow">
+                    Recommended Specialization
+                </span>
+
+
+                <!-- JavaScript will replace this -->
+                <h2 id="recommended-path">
+                    Full-Stack Web Development
+                </h2>
+
+
+                <!-- JavaScript will replace this -->
+                <div class="match-score">
+
+                    <span id="match-score">
+                        85%
+                    </span>
+
+                    <small>
+                        Match
+                    </small>
+
+                </div>
+
+
+                <!-- JavaScript will replace this -->
+                <p id="recommendation-summary">
+
+                    Your responses show a strong interest in
+                    building complete applications and creating
+                    practical solutions that people can use.
+                    Full-Stack Web Development matches these
+                    interests particularly well.
+
+                </p>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =====================================
+             SCORE BREAKDOWN + CANVAS
+        ====================================== -->
+
+        <section class="results-analysis">
+
+
+            <!-- Score information -->
+
+            <div class="score-card">
+
+                <span class="eyebrow">
+                    Your Profile
+                </span>
+
+
+                <h2>
+                    Specialisation Breakdown
+                </h2>
+
+
+                <p>
+                    Your scores across the four CareerVision
+                    specialization paths.
+                </p>
+
+
+                <div class="score-list">
+
+
+                    <div class="score-item">
+
+                        <div class="score-label">
+
+                            <span>
+                                Low-Level Programming
+                            </span>
+
+                            <span id="low-level-score">
+                                65%
+                            </span>
+
+                        </div>
+
+
+                        <div class="score-progress">
+
+                            <div
+                                id="low-level-bar"
+                                class="score-progress-fill"
+                            ></div>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <div class="score-item">
+
+                        <div class="score-label">
+
+                            <span>
+                                Full-Stack Development
+                            </span>
+
+                            <span id="full-stack-score">
+                                85%
+                            </span>
+
+                        </div>
+
+
+                        <div class="score-progress">
+
+                            <div
+                                id="full-stack-bar"
+                                class="score-progress-fill"
+                            ></div>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <div class="score-item">
+
+                        <div class="score-label">
+
+                            <span>
+                                AR / VR
+                            </span>
+
+                            <span id="arvr-score">
+                                55%
+                            </span>
+
+                        </div>
+
+
+                        <div class="score-progress">
+
+                            <div
+                                id="arvr-bar"
+                                class="score-progress-fill"
+                            ></div>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <div class="score-item">
+
+                        <div class="score-label">
+
+                            <span>
+                                Machine Learning
+                            </span>
+
+                            <span id="machine-learning-score">
+                                70%
+                            </span>
+
+                        </div>
+
+
+                        <div class="score-progress">
+
+                            <div
+                                id="machine-learning-bar"
+                                class="score-progress-fill"
+                            ></div>
+
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+            </div>
+
+
+
+            <!-- Canvas chart -->
+
+            <div class="chart-card">
+
+                <span class="eyebrow">
+                    Visual Profile
+                </span>
+
+
+                <h2>
+                    Your CareerVision Profile
+                </h2>
+
+
+                <canvas
+                    id="results-chart"
+                    width="500"
+                    height="400"
+                    aria-label="Chart showing specialization scores"
+                >
+                </canvas>
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- =====================================
+             EXPLANATION
+        ====================================== -->
+
+        <section class="explanation-section">
+
+
+            <div class="section-heading">
+
+                <span class="eyebrow">
+                    Why This Path?
+                </span>
+
+
+                <h2>
+                    Why We Recommended This Specialisation
+                </h2>
+
+            </div>
+
+
+            <div
+                id="recommendation-explanation"
+                class="explanation-card"
+            >
+
+                <p>
+                    Your answers indicate that you enjoy creating
+                    practical solutions, working with users, and
+                    combining different technologies to build
+                    complete applications.
+                </p>
+
+                <p>
+                    These characteristics are strongly aligned
+                    with Full-Stack Web Development, where
+                    developers work across both front-end and
+                    back-end technologies.
+                </p>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =====================================
+             SKILLS
+        ====================================== -->
+
+        <section class="skills-section">
+
+
+            <div class="section-heading">
+
+                <span class="eyebrow">
+                    Skills To Develop
+                </span>
+
+
+                <h2>
+                    Recommended Skills
+                </h2>
+
+            </div>
+
+
+            <div
+                id="skills-container"
+                class="skills-container"
+            >
+
+
+                <div class="skill-card">
+
+                    <i
+                        class="ph ph-code"
+                        aria-hidden="true"
+                    ></i>
+
+                    <h3>
+                        Programming
+                    </h3>
+
+                    <p>
+                        Strengthen your programming fundamentals
+                        and problem-solving abilities.
+                    </p>
+
+                </div>
+
+
+
+                <div class="skill-card">
+
+                    <i
+                        class="ph ph-database"
+                        aria-hidden="true"
+                    ></i>
+
+                    <h3>
+                        Databases
+                    </h3>
+
+                    <p>
+                        Learn how applications store, retrieve,
+                        and manage information.
+                    </p>
+
+                </div>
+
+
+
+                <div class="skill-card">
+
+                    <i
+                        class="ph ph-globe"
+                        aria-hidden="true"
+                    ></i>
+
+                    <h3>
+                        Web Technologies
+                    </h3>
+
+                    <p>
+                        Develop strong front-end and back-end
+                        development skills.
+                    </p>
+
+                </div>
+
+
+
+                <div class="skill-card">
+
+                    <i
+                        class="ph ph-git-branch"
+                        aria-hidden="true"
+                    ></i>
+
+                    <h3>
+                        Version Control
+                    </h3>
+
+                    <p>
+                        Learn Git and collaborative software
+                        development workflows.
+                    </p>
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =====================================
+             CAREER OPPORTUNITIES
+        ====================================== -->
+
+        <section class="careers-section">
+
+
+            <div class="section-heading">
+
+                <span class="eyebrow">
+                    Future Opportunities
+                </span>
+
+
+                <h2>
+                    Career Opportunities
+                </h2>
+
+            </div>
+
+
+            <div
+                id="careers-container"
+                class="careers-container"
+            >
+
+
+                <div class="career-card">
+
+                    <i
+                        class="ph ph-browser"
+                        aria-hidden="true"
+                    ></i>
+
+                    <h3>
+                        Full-Stack Developer
+                    </h3>
+
+                    <p>
+                        Build complete web applications across
+                        front-end and back-end systems.
+                    </p>
+
+                </div>
+
+
+
+                <div class="career-card">
+
+                    <i
+                        class="ph ph-code"
+                        aria-hidden="true"
+                    ></i>
+
+                    <h3>
+                        Web Application Developer
+                    </h3>
+
+                    <p>
+                        Design and develop interactive web
+                        applications for businesses and users.
+                    </p>
+
+                </div>
+
+
+
+                <div class="career-card">
+
+                    <i
+                        class="ph ph-rocket"
+                        aria-hidden="true"
+                    ></i>
+
+                    <h3>
+                        Software Engineer
+                    </h3>
+
+                    <p>
+                        Create scalable software solutions using
+                        modern development technologies.
+                    </p>
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =====================================
+             LEARNING RESOURCES
+        ====================================== -->
+
+        <section class="resources-section">
+
+
+            <div class="section-heading">
+
+                <span class="eyebrow">
+                    Keep Learning
+                </span>
+
+
+                <h2>
+                    Recommended Learning Resources
+                </h2>
+
+            </div>
+
+
+            <div
+                id="resources-container"
+                class="resources-container"
+            >
+
+
+                <div class="resource-card">
+
+                    <i
+                        class="ph ph-book-open"
+                        aria-hidden="true"
+                    ></i>
+
+                    <h3>
+                        Web Development Fundamentals
+                    </h3>
+
+                    <p>
+                        Strengthen your HTML, CSS, and JavaScript
+                        foundations.
+                    </p>
+
+                </div>
+
+
+
+                <div class="resource-card">
+
+                    <i
+                        class="ph ph-git-branch"
+                        aria-hidden="true"
+                    ></i>
+
+                    <h3>
+                        Git and GitHub
+                    </h3>
+
+                    <p>
+                        Learn how to manage projects and
+                        collaborate with other developers.
+                    </p>
+
+                </div>
+
+
+
+                <div class="resource-card">
+
+                    <i
+                        class="ph ph-database"
+                        aria-hidden="true"
+                    ></i>
+
+                    <h3>
+                        Backend Development
+                    </h3>
+
+                    <p>
+                        Explore APIs, databases, servers, and
+                        backend programming.
+                    </p>
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =====================================
+             NEXT STEPS
+        ====================================== -->
+
+        <section class="next-steps-section">
+
+
+            <div class="next-steps-card">
+
+
+                <span class="eyebrow">
+                    Your Next Step
+                </span>
+
+
+                <h2>
+                    Ready to Explore Your Path?
+                </h2>
+
+
+                <p>
+                    Use your recommendation as a starting point.
+                    Continue developing your skills, explore
+                    projects, and gain practical experience in
+                    your chosen specialization.
+                </p>
+
+
+                <div class="results-actions">
+
+                    <a
+                        href="index.html#paths"
+                        class="primary-btn"
+                    >
+                        Explore Paths
+                    </a>
+
+
+                    <a
+                        href="quiz.html"
+                        class="secondary-btn"
+                    >
+                        Retake Assessment
+                    </a>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+    </main>
+
+
+
+    <!-- =========================================
+         FOOTER
+    ========================================== -->
+
+    <footer class="footer">
+
+
+        <div class="footer-content">
+
+
+            <div class="footer-contact">
+
+                <h3>
+                    Contact Us
+                </h3>
+
+
+                <p>
+
+                    Email:
+
+                    <a href="mailto:info@careervision.com">
+                        info@careervision.com
+                    </a>
+
+                </p>
+
+            </div>
+
+
+
+            <div class="footer-logo">
+
+                <h2>
+                    CareerVision
+                </h2>
+
+            </div>
+
+
+
+            <div class="footer-links">
+
+                <a href="index.html">
+                    Home
+                </a>
+
+                <a href="index.html#paths">
+                    Paths
+                </a>
+
+                <a href="index.html#about">
+                    About
+                </a>
+
+                <a href="contact.html">
+                    Contact
+                </a>
+
+            </div>
+
+
+        </div>
+
+
+
+        <div class="footer-bottom">
+
+            <p>
+                &copy; 2026 CareerVision. All Rights Reserved.
+            </p>
+
+        </div>
+
+
+    </footer>
+
+
+
+    <!-- =========================================
+         JAVASCRIPT
+    ========================================== -->
+
+    <script
+        src="js/results.js"
+        defer
+    ></script>
+
+
+</body>
+
+</html>

@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Get in touch with the CareerVision team.">
+
+    <title>CareerVision | Contact Us</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Quicksand:wght@500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Phosphor Icons -->
+    <link
+        rel="stylesheet"
+        type="text/css"
+        href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/regular/style.css"
+    >
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/variables.css">
+    <link rel="stylesheet" href="css/contact.css">
+    <link rel="stylesheet" href="css/bg-hover.css">
+</head>
+
+<body>
+
+    <!-- ================= HEADER ================= -->
+    <header class="navbar">
+
+        <div class="logo">
+            <a href="index.html">CareerVision</a>
+        </div>
+
+        <nav>
+            <ul>
+                <li><a href="index.html#hero" data-bg="Images/nav-home.jpg">Home</a></li>
+                <li><a href="index.html#features" data-bg="Images/nav-paths.jpg">Paths</a></li>
+                <li><a href="index.html#about" data-bg="Images/nav-about.jpg">About</a></li>
+                <li><a href="contact.html" class="active" data-bg="Images/nav-contact.jpg">Contact</a></li>
+            </ul>
+        </nav>
+
+        <!-- FIX: was index.html#registration — that section no longer
+             exists, registration now lives at register.html -->
+        <a href="register.html" class="nav-button">
+            Get Started
+        </a>
+
+    </header>
+
+
+    <!-- ================= CONTACT HERO ================= -->
+    <main>
+
+        <section class="contact-hero">
+
+            <div class="contact-intro">
+                <span class="section-label">GET IN TOUCH</span>
+
+                <h1>
+                    Let's Shape Your
+                    <span>Career Path.</span>
+                </h1>
+
+                <p>
+                    Have a question, suggestion, or need help using
+                    CareerVision? We'd love to hear from you.
+                    Send us a message and we'll get back to you.
+                </p>
+            </div>
+
+        </section>
+
+
+        <!-- ================= CONTACT SECTION ================= -->
+        <section class="contact-section">
+
+            <!-- Contact Information -->
+            <div class="contact-info">
+
+                <h2>Connect With Us</h2>
+
+                <p>
+                    Whether you're unsure about your specialization,
+                    have feedback about the assessment, or simply want
+                    to learn more about CareerVision, feel free to reach out.
+                </p>
+
+                <div class="contact-details">
+
+                    <div class="contact-item">
+                        <i class="ph ph-envelope-simple"></i>
+
+                        <div>
+                            <h3>Email</h3>
+                            <p>careervision@example.com</p>
+                        </div>
+                    </div>
+
+
+                    <div class="contact-item">
+                        <i class="ph ph-map-pin"></i>
+
+                        <div>
+                            <h3>Location</h3>
+                            <p>African Leadership College</p>
+                        </div>
+                    </div>
+
+
+                    <div class="contact-item">
+                        <i class="ph ph-github-logo"></i>
+
+                        <div>
+                            <h3>GitHub</h3>
+                            <p>Explore our project</p>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- Contact Form -->
+            <div class="contact-form-container">
+
+                <h2>Send Us a Message</h2>
+
+                <form id="contactForm" novalidate>
+
+                    <!-- Name -->
+                    <div class="form-group">
+
+                        <label for="name">Full Name</label>
+
+                        <input
+                            type="text"
+                            id="name"
+                            name="name"
+                            placeholder="Enter your full name"
+                            required
+                        >
+
+                        <small class="error-message" id="nameError"></small>
+
+                    </div>
+
+
+                    <!-- Email -->
+                    <div class="form-group">
+
+                        <label for="email">Email Address</label>
+
+                        <input
+                            type="email"
+                            id="email"
+                            name="email"
+                            placeholder="Enter your email address"
+                            required
+                        >
+
+                        <small class="error-message" id="emailError"></small>
+
+                    </div>
+
+
+                    <!-- Subject -->
+                    <div class="form-group">
+
+                        <label for="subject">Subject</label>
+
+                        <input
+                            type="text"
+                            id="subject"
+                            name="subject"
+                            placeholder="What is your message about?"
+                            required
+                        >
+
+                        <small class="error-message" id="subjectError"></small>
+
+                    </div>
+
+
+                    <!-- Message -->
+                    <div class="form-group">
+
+                        <label for="message">Message</label>
+
+                        <textarea
+                            id="message"
+                            name="message"
+                            rows="6"
+                            placeholder="Write your message here..."
+                            required
+                        ></textarea>
+
+                        <small class="error-message" id="messageError"></small>
+
+                    </div>
+
+
+                    <!-- Submit -->
+                    <button type="submit" class="submit-button">
+                        Send Message
+                        <i class="ph ph-paper-plane-tilt"></i>
+                    </button>
+
+                    <p id="formSuccess" class="success-message"></p>
+
+                </form>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- ================= FOOTER ================= -->
+    <footer class="footer">
+
+        <div class="footer-content">
+
+            <div class="footer-brand">
+
+                <h2>CareerVision</h2>
+
+                <p>
+                    Helping software engineering students
+                    discover the career path that fits them best.
+                </p>
+
+            </div>
+
+
+            <div class="footer-links">
+
+                <h3>Quick Links</h3>
+
+                <a href="index.html">Home</a>
+                <a href="index.html#features">Paths</a>
+                <a href="index.html#about">About</a>
+                <a href="contact.html">Contact</a>
+
+            </div>
+
+
+            <div class="footer-links">
+
+                <h3>Start Your Journey</h3>
+
+                <!-- FIX: was index.html#registration -->
+                <a href="register.html">
+                    Take the Assessment
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <div class="footer-bottom">
+
+            <p>
+                &copy; 2026 CareerVision. All rights reserved.
+            </p>
+
+        </div>
+
+    </footer>
+
+
+    <!-- JavaScript -->
+    <!-- FIX: was js/validation.js, which only knows about the
+         registration form's fields — this page needs its own script. -->
+    <script src="js/contact.js" defer></script>
+    <script src="js/bg-hover.js" defer></script>
+
+</body>
+
+</html>

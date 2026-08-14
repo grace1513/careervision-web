@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="CareerVision helps Bachelor of Software Engineering students discover the right specialization through an interactive assessment.">
+
+    <!-- Google Fonts: Quicksand (headings), Inter (body), JetBrains Mono (labels) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+
+    <!-- Phosphor Icons -->
+    <link
+        rel="stylesheet"
+        type="text/css"
+        href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/regular/style.css"
+    >
+
+    <!-- CSS Files -->
+    <link href="css/variables.css" rel="stylesheet">
+    <link href="css/home.css" rel="stylesheet">
+    <link href="css/bg-hover.css" rel="stylesheet">
+
+    <title>CareerVision | Discover Your Software Engineering Path</title>
+
+</head>
+
+<body>
+
+    <!-- Skip link: lets keyboard/screen-reader users jump past the nav -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <!-- Header -->
+    <header class="navbar">
+
+        <div class="logo">
+            CareerVision
+        </div>
+
+        <nav aria-label="Main navigation">
+
+            <ul>
+                <li><a href="#hero" data-bg="Images/nav-home.jpg">Home</a></li>
+                <li><a href="#features" data-bg="Images/nav-paths.jpg">Paths</a></li>
+                <li><a href="#about" data-bg="Images/nav-about.jpg">About</a></li>
+                <li><a href="contact.html" data-bg="Images/nav-contact.jpg">Contact</a></li>
+            </ul>
+
+        </nav>
+
+        <a href="register.html" class="cta-button">
+            Get Started
+        </a>
+
+    </header>
+
+
+    <main id="main-content">
+
+        <!-- Hero Section -->
+        <section id="hero" class="hero">
+
+            <span class="eyebrow">BSE Specialisation Advisor</span>
+
+            <h1>
+                Discover Your Software Engineering Path
+            </h1>
+
+            <p>
+                CareerVision helps Bachelor of Software Engineering students discover
+                the specialization that best matches their interests, strengths,
+                and career aspirations through an interactive assessment.
+            </p>
+
+            <a href="register.html" class="primary-btn">
+                Start Assessment
+            </a>
+
+        </section>
+
+
+        <!-- Paths Section: the 4 specializations -->
+        <section id="features" class="features">
+
+            <div class="section-heading">
+                <span class="eyebrow">Four Paths, One Assessment</span>
+                <h2>Explore Your Specialisations</h2>
+            </div>
+
+            <div class="feature-container">
+
+                <div class="feature-card" data-bg-video="Video/path-lowlevel.mp4">
+                    <span class="marker-number">01</span>
+                    <i class="ph ph-cpu marker-icon"></i>
+                    <h3>Low-Level Programming</h3>
+                    <p>
+                        Work close to the hardware — memory management,
+                        operating systems, and performance-critical systems code.
+                    </p>
+                </div>
+
+                <div class="feature-card" data-bg-video="Video/path-arvr.mp4">
+                    <span class="marker-number">02</span>
+                    <i class="ph ph-vr-cardboard marker-icon"></i>
+                    <h3>AR / VR</h3>
+                    <p>
+                        Build immersive experiences — spatial computing,
+                        3D environments, and next-generation interfaces.
+                    </p>
+                </div>
+
+                <div class="feature-card" data-bg-video="Video/path-fullstack.mp4">
+                    <span class="marker-number">03</span>
+                    <i class="ph ph-browsers marker-icon"></i>
+                    <h3>Full-Stack Web Development</h3>
+                    <p>
+                        Design and ship complete web applications —
+                        from database to browser, front to back.
+                    </p>
+                </div>
+
+                <div class="feature-card" data-bg-video="Video/path-ml.mp4">
+                    <span class="marker-number">04</span>
+                    <i class="ph ph-brain marker-icon"></i>
+                    <h3>Machine Learning</h3>
+                    <p>
+                        Train models that learn from data — from
+                        prediction and classification to generative systems.
+                    </p>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- About Section -->
+        <section id="about" class="about">
+
+            <h2>
+                About CareerVision
+            </h2>
+
+            <p>
+                CareerVision is an interactive web application designed to guide
+                Bachelor of Software Engineering students in exploring different
+                specializations. Through a personalized quiz, students receive
+                recommendations that align with their skills, interests, and future
+                career goals.
+            </p>
+
+        </section>
+
+
+        <!-- Video Section: replaces the old registration form spot -->
+        <section id="video" class="video-section">
+
+            <div class="section-heading">
+                <span class="eyebrow">See It In Action</span>
+                <h2>Watch How CareerVision Works</h2>
+            </div>
+
+            <!-- PLACEHOLDER: swap YOUR_VIDEO_ID_HERE for a real YouTube video ID
+                 (the part after "v=" in a youtube.com/watch?v=... URL). The
+                 thumbnail loads instantly and free; the actual video/iframe
+                 only loads once the person clicks play. -->
+            <div
+                class="video-wrapper"
+                data-video-id="YOUR_VIDEO_ID_HERE"
+            >
+                <img
+                    class="video-thumbnail"
+                    src="https://img.youtube.com/vi/YOUR_VIDEO_ID_HERE/hqdefault.jpg"
+                    alt="CareerVision walkthrough video thumbnail"
+                    loading="lazy"
+                >
+
+                <button type="button" class="video-play-btn" aria-label="Play video">
+                    <i class="ph-fill ph-play"></i>
+                </button>
+            </div>
+
+        </section>
+
+
+    </main>
+
+
+
+    <!-- Footer -->
+    <footer class="footer">
+
+        <div class="footer-content">
+
+            <div class="footer-brand">
+
+                <h2>CareerVision</h2>
+
+                <p>
+                    Helping software engineering students
+                    discover the career path that fits them best.
+                </p>
+
+            </div>
+
+
+            <div class="footer-links">
+
+                <h3>Quick Links</h3>
+
+                <a href="#hero">Home</a>
+                <a href="#features">Paths</a>
+                <a href="#about">About</a>
+                <a href="contact.html">Contact</a>
+
+            </div>
+
+
+            <div class="footer-links">
+
+                <h3>Start Your Journey</h3>
+
+                <a href="register.html">
+                    Take the Assessment
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <div class="footer-bottom">
+
+            <p>
+                &copy; 2026 CareerVision. All Rights Reserved.
+            </p>
+
+        </div>
+
+    </footer>
+
+
+    <!-- JS Files -->
+    <script src="js/bg-hover.js" defer></script>
+    <script src="js/path-video-bg.js" defer></script>
+    <script src="js/video.js" defer></script>
+
+</body>
+
+</html>

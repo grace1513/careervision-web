@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta
+        name="description"
+        content="CareerVision interactive software engineering specialization assessment."
+    >
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap"
+        rel="stylesheet"
+    >
+
+    <!-- Phosphor Icons -->
+    <link
+        rel="stylesheet"
+        type="text/css"
+        href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/regular/style.css"
+    >
+
+    <!-- Shared variables -->
+    <link href="css/variables.css" rel="stylesheet">
+
+    <!-- Shared website styling -->
+    <link href="css/home.css" rel="stylesheet">
+
+    <!-- Quiz-specific styling -->
+    <link href="css/quiz.css" rel="stylesheet">
+
+    <title>CareerVision | Quiz</title>
+
+</head>
+
+
+<body>
+
+    <!-- Skip navigation link -->
+    <a href="#main-content" class="skip-link">
+        Skip to main content
+    </a>
+
+
+    <!-- =========================================
+         HEADER
+    ========================================== -->
+
+    <header class="navbar">
+
+        <div class="logo">
+            CareerVision
+        </div>
+
+
+        <nav aria-label="Main navigation">
+
+            <ul>
+
+                <li>
+                    <a href="index.html#hero">
+                        Home
+                    </a>
+                </li>
+
+                <li>
+                    <a href="index.html#paths">
+                        Paths
+                    </a>
+                </li>
+
+                <li>
+                    <a href="index.html#about">
+                        About
+                    </a>
+                </li>
+
+                <li>
+                    <a href="index.html#contact">
+                        Contact
+                    </a>
+                </li>
+
+            </ul>
+
+        </nav>
+
+
+        <a
+            href="index.html#registration"
+            class="cta-button"
+        >
+            Get Started
+        </a>
+
+    </header>
+
+
+    <!-- =========================================
+         MAIN QUIZ CONTENT
+    ========================================== -->
+
+    <main id="main-content" class="quiz-page">
+
+
+        <!-- =====================================
+             QUIZ INTRODUCTION
+        ====================================== -->
+
+        <section
+            id="quiz-introduction"
+            class="quiz-introduction"
+        >
+
+            <span class="eyebrow">
+                CareerVision Assessment
+            </span>
+
+
+            <h1>
+                Discover Your Software Engineering Path
+            </h1>
+
+
+            <p>
+                Answer the questions based on your interests,
+                strengths, and preferred way of solving problems.
+                Your answers will help us recommend the specialization
+                that best matches you.
+            </p>
+
+
+            <div class="quiz-info">
+
+                <div class="quiz-info-card">
+
+                    <i class="ph ph-list-check"></i>
+
+                    <div>
+                        <strong>10 Questions</strong>
+
+                        <span>
+                            Explore your interests and strengths
+                        </span>
+                    </div>
+
+                </div>
+
+
+                <div class="quiz-info-card">
+
+                    <i class="ph ph-timer"></i>
+
+                    <div>
+                        <strong>10 Minutes</strong>
+
+                        <span>
+                            Complete the assessment before time runs out
+                        </span>
+                    </div>
+
+                </div>
+
+
+                <div class="quiz-info-card">
+
+                    <i class="ph ph-chart-bar"></i>
+
+                    <div>
+                        <strong>Personalized Result</strong>
+
+                        <span>
+                            Receive your recommended specialization
+                        </span>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <button
+                type="button"
+                id="start-quiz"
+                class="primary-btn"
+            >
+                Start Assessment
+
+                <i class="ph ph-arrow-right"></i>
+
+            </button>
+
+        </section>
+
+
+        <!-- =====================================
+             QUIZ CONTAINER
+        ====================================== -->
+
+        <section
+            id="quiz-container"
+            class="quiz-container hidden"
+        >
+
+
+            <!-- =================================
+                 QUIZ TOP BAR
+            ================================== -->
+
+            <div class="quiz-topbar">
+
+
+                <!-- Question progress -->
+
+                <div class="progress-information">
+
+                    <span>
+                        Question
+                    </span>
+
+                    <strong>
+                        <span id="current-question">
+                            1
+                        </span>
+                        /
+                        <span id="total-questions">
+                            10
+                        </span>
+                    </strong>
+
+                </div>
+
+
+                <!-- Timer -->
+
+                <div
+                    id="quiz-timer"
+                    class="quiz-timer"
+                    aria-live="polite"
+                >
+
+                    <i class="ph ph-timer"></i>
+
+                    <span id="time-remaining">
+                        10:00
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================
+                 PROGRESS BAR
+            ================================== -->
+
+            <div
+                class="progress-bar-container"
+                aria-label="Quiz progress"
+            >
+
+                <div
+                    id="progress-bar"
+                    class="progress-bar"
+                ></div>
+
+            </div>
+
+
+            <!-- =================================
+                 QUESTION CARD
+            ================================== -->
+
+            <article
+                id="quiz-card"
+                class="quiz-card"
+            >
+
+
+                <!-- Question category -->
+
+                <span
+                    id="question-category"
+                    class="question-category"
+                >
+                    Interests
+                </span>
+
+
+                <!-- Question -->
+
+                <h2 id="question-text">
+                    Which activity sounds the most enjoyable to you?
+                </h2>
+
+
+                <!-- =================================
+                     OPTIONAL MEDIA AREA
+                ================================== -->
+
+                <div
+                    id="question-media"
+                    class="question-media hidden"
+                >
+
+                    <!--
+                        JavaScript can display an image,
+                        audio player, video or hotspot
+                        inside this container.
+                    -->
+
+                </div>
+
+
+                <!-- =================================
+                     ANSWERS
+                ================================== -->
+
+                <div
+                    id="answers-container"
+                    class="answers-container"
+                >
+
+                    <!--
+                        JavaScript will dynamically
+                        create the answer buttons here.
+                    -->
+
+                </div>
+
+
+                <!-- =================================
+                     QUIZ NAVIGATION
+                ================================== -->
+
+                <div class="quiz-navigation">
+
+                    <button
+                        type="button"
+                        id="previous-button"
+                        class="secondary-btn"
+                    >
+
+                        <i class="ph ph-arrow-left"></i>
+
+                        Previous
+
+                    </button>
+
+
+                    <button
+                        type="button"
+                        id="next-button"
+                        class="primary-btn"
+                        disabled
+                    >
+
+                        Next
+
+                        <i class="ph ph-arrow-right"></i>
+
+                    </button>
+
+                </div>
+
+            </article>
+
+
+            <!-- =================================
+                 TIMEOUT MESSAGE
+            ================================== -->
+
+            <div
+                id="timeout-message"
+                class="timeout-message hidden"
+                role="alert"
+            >
+
+                <i class="ph ph-warning-circle"></i>
+
+                <h2>
+                    Time's Up!
+                </h2>
+
+                <p>
+                    Your answers have been recorded.
+                    We are calculating your results.
+                </p>
+
+            </div>
+
+
+        </section>
+
+
+        <!-- =====================================
+             QUIZ COMPLETION
+        ====================================== -->
+
+        <section
+            id="quiz-complete"
+            class="quiz-complete hidden"
+        >
+
+            <div class="completion-icon">
+
+                <i class="ph ph-check-circle"></i>
+
+            </div>
+
+
+            <h2>
+                Assessment Complete!
+            </h2>
+
+
+            <p>
+                Your answers have been analysed.
+                Let's discover your recommended specialization.
+            </p>
+
+
+            <button
+                type="button"
+                id="view-results"
+                class="primary-btn"
+            >
+
+                View My Results
+
+                <i class="ph ph-arrow-right"></i>
+
+            </button>
+
+        </section>
+
+
+    </main>
+
+
+    <!-- =========================================
+         FOOTER
+    ========================================== -->
+
+    <footer class="footer">
+
+
+        <div class="footer-content">
+
+
+            <div class="footer-contact">
+
+                <h3>
+                    Contact Us
+                </h3>
+
+                <p>
+
+                    Email:
+
+                    <a href="mailto:info@careervision.com">
+                        info@careervision.com
+                    </a>
+
+                </p>
+
+            </div>
+
+
+            <div class="footer-logo">
+
+                <h2>
+                    CareerVision
+                </h2>
+
+            </div>
+
+
+            <div class="footer-links">
+
+                <a href="index.html#hero">
+                    Home
+                </a>
+
+                <a href="index.html#paths">
+                    Paths
+                </a>
+
+                <a href="index.html#about">
+                    About
+                </a>
+
+                <a href="index.html#contact">
+                    Contact
+                </a>
+
+            </div>
+
+
+        </div>
+
+
+        <div class="footer-bottom">
+
+            <p>
+                &copy; 2026 CareerVision. All Rights Reserved.
+            </p>
+
+        </div>
+
+
+    </footer>
+
+
+    <!-- =========================================
+         JAVASCRIPT
+    ========================================== -->
+
+    <script
+        src="js/quiz.js"
+        defer
+    ></script>
+
+    <script
+        src="js/timer.js"
+        defer
+    ></script>
+
+</body>
+
+</html>
+

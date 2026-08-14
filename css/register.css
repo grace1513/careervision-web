@@ -1,0 +1,344 @@
+/* =========================================
+   REGISTER PAGE
+========================================= */
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    font-family: var(--font-main);
+    font-size: var(--text-body);
+    color: var(--color-text-light);
+    /* Subtle radial gradient instead of flat green — same palette,
+       more depth without introducing a new color. */
+    background:
+        radial-gradient(circle at 15% 10%, rgba(201, 226, 14, .08), transparent 45%),
+        radial-gradient(circle at 85% 90%, rgba(201, 226, 14, .06), transparent 40%),
+        var(--color-primary);
+    min-height: 100vh;
+    line-height: 1.6;
+}
+
+h1{
+    font-family: var(--font-display);
+    font-weight: 700;
+}
+
+
+/* =========================================
+   HEADER
+========================================= */
+
+.register-header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 60px;
+}
+
+.logo{
+    color: var(--color-text-light);
+    font-family: var(--font-display);
+    font-size: var(--text-h3);
+    font-weight: 700;
+    text-decoration: none;
+    letter-spacing: .02em;
+}
+
+.back-link{
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: var(--color-text-light);
+    opacity: .75;
+    text-decoration: none;
+    font-size: 14px;
+    transition: opacity .25s ease, transform .25s ease;
+}
+
+.back-link:hover{
+    opacity: 1;
+    transform: translateX(-3px);
+}
+
+
+/* =========================================
+   PAGE / CARD
+========================================= */
+
+.register-page{
+    min-height: calc(100vh - 76px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 20px 60px;
+}
+
+.register-card{
+    width: 100%;
+    max-width: 540px;
+    background-color: var(--color-surface);
+    color: var(--color-ink);
+    padding: 44px;
+    border-radius: 16px;
+    box-shadow: 0 20px 50px rgba(0,0,0,.3);
+    text-align: center;
+
+    animation: card-in .5s ease both;
+}
+
+@keyframes card-in{
+    from{
+        opacity: 0;
+        transform: translateY(16px);
+    }
+    to{
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+/* =========================================
+   STEP INDICATOR (Register → Quiz → Results)
+========================================= */
+
+.step-indicator{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    list-style: none;
+    margin-bottom: 30px;
+}
+
+.step{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+}
+
+.step-dot{
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #eee;
+    color: #999;
+    font-family: var(--font-mono);
+    font-size: 13px;
+    font-weight: 600;
+    transition: background-color .25s ease, color .25s ease;
+}
+
+.step.active .step-dot{
+    background-color: var(--color-primary);
+    color: var(--color-text-light);
+}
+
+.step-label{
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: .06em;
+    color: #999;
+}
+
+.step.active .step-label{
+    color: var(--color-primary);
+    font-weight: 600;
+}
+
+.step-connector{
+    width: 40px;
+    height: 2px;
+    background-color: #eee;
+    margin: 0 8px;
+    margin-bottom: 20px; /* aligns with the dots, not the labels */
+}
+
+
+/* =========================================
+   INTRO TEXT
+========================================= */
+
+.register-card .eyebrow{
+    display: inline-block;
+    font-family: var(--font-mono);
+    font-size: var(--text-label);
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: var(--color-primary);
+    opacity: .7;
+    margin-bottom: 14px;
+}
+
+.register-card h1{
+    font-size: var(--text-h2);
+    margin-bottom: 10px;
+}
+
+.register-card > p{
+    color: #555;
+    margin-bottom: 30px;
+}
+
+
+/* =========================================
+   FORM
+========================================= */
+
+.register-card form{
+    text-align: left;
+}
+
+.form-group{
+    margin-bottom: 20px;
+}
+
+.form-group label{
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    font-size: 15px;
+}
+
+/* Wraps the icon + input together so the icon sits inside the field */
+.input-wrapper{
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.input-wrapper i{
+    position: absolute;
+    left: 14px;
+    font-size: 18px;
+    color: #aaa;
+    pointer-events: none;
+    transition: color .25s ease;
+}
+
+.input-wrapper input{
+    width: 100%;
+    padding: 12px 14px 12px 42px; /* left padding makes room for the icon */
+    border: 2px solid #ddd;
+    border-radius: 10px;
+    font-size: 16px;
+    font-family: var(--font-main);
+    outline: none;
+    transition: border-color .25s ease, box-shadow .25s ease;
+}
+
+.input-wrapper input:focus{
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 3px rgba(45, 90, 74, .15);
+}
+
+.input-wrapper input:focus + i,
+.input-wrapper input:focus ~ i{
+    color: var(--color-primary);
+}
+
+.input-wrapper input.invalid{
+    border-color: #d64545;
+}
+
+.form-group .error-message{
+    display: none;
+    color: #d64545;
+    font-size: 0.85rem;
+    margin-top: 6px;
+}
+
+
+/* =========================================
+   SUBMIT BUTTON
+========================================= */
+
+button[type="submit"]{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 16px;
+    background-color: var(--color-primary);
+    color: var(--color-text-light);
+    border: none;
+    border-radius: 10px;
+    font-size: var(--text-button);
+    font-weight: 700;
+    cursor: pointer;
+    transition: background-color .25s ease, transform .2s ease;
+}
+
+button[type="submit"]:hover{
+    background-color: var(--color-accent);
+    color: var(--color-ink);
+    transform: translateY(-2px);
+}
+
+button[type="submit"] i{
+    font-size: 18px;
+    transition: transform .25s ease;
+}
+
+button[type="submit"]:hover i{
+    transform: translateX(3px);
+}
+
+
+/* =========================================
+   FINE PRINT
+========================================= */
+
+.register-fineprint{
+    margin-top: 22px;
+    font-size: 13px;
+    color: #777;
+    text-align: center;
+}
+
+.register-fineprint a{
+    color: var(--color-primary);
+    font-weight: 600;
+}
+
+
+/* =========================================
+   RESPONSIVE
+========================================= */
+
+@media (max-width: 480px){
+
+    .register-header{
+        padding: 20px 25px;
+    }
+
+    .back-link span{
+        display: none; /* keep just the arrow icon on very small screens */
+    }
+
+    .register-card{
+        padding: 30px 22px;
+    }
+
+    .step-connector{
+        width: 24px;
+    }
+}
+
+/* Respect reduced-motion preferences */
+@media (prefers-reduced-motion: reduce){
+    .register-card{
+        animation: none;
+    }
+    *{
+        transition: none !important;
+    }
+}

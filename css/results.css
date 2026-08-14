@@ -1,0 +1,866 @@
+/* =========================================
+   RESULTS PAGE
+========================================= */
+
+/* Controls the overall results page layout. */
+.results-page {
+    width: 90%;
+    max-width: 1200px;
+
+    margin: 0 auto;
+
+    padding: 70px 20px;
+
+    color: var(--color-text-light);
+}
+
+
+/* =========================================
+   RESULTS HERO
+========================================= */
+
+/* Centers the introduction at the top
+   of the results page. */
+.results-hero {
+    max-width: 850px;
+
+    margin: 0 auto 60px;
+
+    text-align: center;
+}
+
+
+/* Small label above headings. */
+.results-hero .eyebrow,
+.section-heading .eyebrow,
+.recommendation-card .eyebrow,
+.next-steps-card .eyebrow {
+    display: block;
+
+    margin-bottom: 12px;
+
+    color: var(--color-accent);
+
+    font-family: var(--font-main);
+
+    font-size: 15px;
+
+    font-weight: bold;
+
+    text-transform: uppercase;
+
+    letter-spacing: 1px;
+}
+
+
+/* Main results heading. */
+.results-hero h1 {
+    font-size: var(--text-h1);
+
+    margin-bottom: 20px;
+}
+
+
+/* Results introduction paragraph. */
+.results-hero p {
+    max-width: 750px;
+
+    margin: 0 auto;
+
+    line-height: 1.7;
+}
+
+
+/* =========================================
+   RECOMMENDATION SECTION
+========================================= */
+
+/* Gives space around the recommendation. */
+.recommendation-section {
+    margin-bottom: 70px;
+}
+
+
+/* Main recommendation card. */
+.recommendation-card {
+    max-width: 850px;
+
+    margin: 0 auto;
+
+    padding: 50px 40px;
+
+    background-color: white;
+
+    color: var(--color-primary);
+
+    border-radius: 18px;
+
+    text-align: center;
+
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.15);
+}
+
+
+/* Recommendation icon container. */
+.recommendation-icon {
+    width: 70px;
+
+    height: 70px;
+
+    margin: 0 auto 20px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    background-color: var(--color-primary);
+
+    color: var(--color-accent);
+
+    border-radius: 50%;
+}
+
+
+/* Recommendation icon. */
+.recommendation-icon i {
+    font-size: 35px;
+}
+
+
+/* Recommended specialization heading. */
+.recommendation-card h2 {
+    margin-bottom: 20px;
+
+    font-size: 35px;
+}
+
+
+/* =========================================
+   MATCH SCORE
+========================================= */
+
+/* Large match percentage. */
+.match-score {
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
+    width: 130px;
+
+    height: 130px;
+
+    margin: 0 auto 25px;
+
+    border: 8px solid var(--color-accent);
+
+    border-radius: 50%;
+
+    background-color: var(--color-primary);
+
+    color: var(--color-text-light);
+}
+
+
+/* Percentage number. */
+.match-score span {
+    font-size: 32px;
+
+    font-weight: bold;
+}
+
+
+/* Match label. */
+.match-score small {
+    font-size: 13px;
+
+    text-transform: uppercase;
+}
+
+
+/* Recommendation explanation. */
+.recommendation-card p {
+    max-width: 700px;
+
+    margin: 0 auto;
+
+    line-height: 1.7;
+}
+
+
+/* =========================================
+   RESULTS ANALYSIS
+========================================= */
+
+/* Places score breakdown and chart
+   next to each other. */
+.results-analysis {
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 30px;
+
+    margin-bottom: 80px;
+}
+
+
+/* Common card design. */
+.score-card,
+.chart-card {
+    padding: 35px;
+
+    background-color: white;
+
+    color: var(--color-primary);
+
+    border-radius: 15px;
+
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+}
+
+
+/* Card headings. */
+.score-card h2,
+.chart-card h2 {
+    margin-bottom: 15px;
+
+    font-size: 27px;
+}
+
+
+/* Card paragraphs. */
+.score-card > p {
+    margin-bottom: 30px;
+}
+
+
+/* =========================================
+   SCORE BREAKDOWN
+========================================= */
+
+/* Holds the individual specialization
+   scores. */
+.score-list {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 22px;
+}
+
+
+/* Individual score. */
+.score-item {
+    width: 100%;
+}
+
+
+/* Score name and percentage. */
+.score-label {
+    display: flex;
+
+    justify-content: space-between;
+
+    margin-bottom: 8px;
+
+    font-size: 14px;
+
+    font-weight: bold;
+}
+
+
+/* Background of score progress bar. */
+.score-progress {
+    width: 100%;
+
+    height: 10px;
+
+    background-color: #e5e5e5;
+
+    border-radius: 10px;
+
+    overflow: hidden;
+}
+
+
+/* Filled score bar.
+
+   JavaScript will change the width
+   according to the student's score. */
+.score-progress-fill {
+    width: 0%;
+
+    height: 100%;
+
+    background-color: var(--color-primary);
+
+    border-radius: 10px;
+
+    transition: width 1s ease;
+}
+
+
+/* =========================================
+   CANVAS CHART
+========================================= */
+
+/* Centers the canvas inside the chart card. */
+.chart-card {
+    text-align: center;
+}
+
+
+/* Canvas itself. */
+#results-chart {
+    display: block;
+
+    width: 100%;
+
+    max-width: 500px;
+
+    height: auto;
+
+    margin: 30px auto 0;
+}
+
+
+/* =========================================
+   SECTION HEADINGS
+========================================= */
+
+.section-heading {
+    max-width: 800px;
+
+    margin: 0 auto 40px;
+
+    text-align: center;
+}
+
+
+.section-heading h2 {
+    font-size: var(--text-h3);
+
+    margin-bottom: 10px;
+}
+
+
+/* =========================================
+   EXPLANATION SECTION
+========================================= */
+
+.explanation-section {
+    margin-bottom: 80px;
+}
+
+
+/* Explanation card. */
+.explanation-card {
+    max-width: 900px;
+
+    margin: 0 auto;
+
+    padding: 35px;
+
+    background-color: white;
+
+    color: var(--color-primary);
+
+    border-radius: 15px;
+
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+}
+
+
+/* Paragraph spacing. */
+.explanation-card p {
+    margin-bottom: 20px;
+
+    line-height: 1.7;
+}
+
+
+/* Remove margin from final paragraph. */
+.explanation-card p:last-child {
+    margin-bottom: 0;
+}
+
+
+/* =========================================
+   SKILLS SECTION
+========================================= */
+
+.skills-section {
+    margin-bottom: 80px;
+}
+
+
+/* Four skill cards. */
+.skills-container {
+    display: grid;
+
+    grid-template-columns: repeat(4, 1fr);
+
+    gap: 20px;
+}
+
+
+/* Individual skill card. */
+.skill-card {
+    padding: 30px 20px;
+
+    background-color: white;
+
+    color: var(--color-primary);
+
+    border-radius: 12px;
+
+    text-align: center;
+
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+
+/* Skill card hover effect. */
+.skill-card:hover {
+    transform: translateY(-8px);
+
+    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
+}
+
+
+/* Skill icon. */
+.skill-card i {
+    display: block;
+
+    margin-bottom: 18px;
+
+    font-size: 40px;
+
+    color: var(--color-primary);
+}
+
+
+/* Skill heading. */
+.skill-card h3 {
+    margin-bottom: 12px;
+
+    font-size: 20px;
+}
+
+
+/* Skill description. */
+.skill-card p {
+    font-size: 14px;
+
+    line-height: 1.6;
+}
+
+
+/* =========================================
+   CAREER OPPORTUNITIES
+========================================= */
+
+.careers-section {
+    margin-bottom: 80px;
+}
+
+
+/* Career cards layout. */
+.careers-container {
+    display: grid;
+
+    grid-template-columns: repeat(3, 1fr);
+
+    gap: 25px;
+}
+
+
+/* Individual career card. */
+.career-card {
+    padding: 30px;
+
+    background-color: white;
+
+    color: var(--color-primary);
+
+    border-radius: 12px;
+
+    text-align: center;
+
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+
+/* Career hover effect. */
+.career-card:hover {
+    transform: translateY(-8px);
+
+    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
+}
+
+
+/* Career icon. */
+.career-card i {
+    display: block;
+
+    margin-bottom: 18px;
+
+    font-size: 42px;
+
+    color: var(--color-primary);
+}
+
+
+/* Career title. */
+.career-card h3 {
+    margin-bottom: 12px;
+
+    font-size: 20px;
+}
+
+
+/* Career description. */
+.career-card p {
+    font-size: 14px;
+
+    line-height: 1.6;
+}
+
+
+/* =========================================
+   LEARNING RESOURCES
+========================================= */
+
+.resources-section {
+    margin-bottom: 80px;
+}
+
+
+/* Resource cards layout. */
+.resources-container {
+    display: grid;
+
+    grid-template-columns: repeat(3, 1fr);
+
+    gap: 25px;
+}
+
+
+/* Individual resource card. */
+.resource-card {
+    padding: 30px;
+
+    background-color: white;
+
+    color: var(--color-primary);
+
+    border-radius: 12px;
+
+    text-align: center;
+
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+
+/* Resource hover effect. */
+.resource-card:hover {
+    transform: translateY(-8px);
+
+    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
+}
+
+
+/* Resource icon. */
+.resource-card i {
+    display: block;
+
+    margin-bottom: 18px;
+
+    font-size: 42px;
+
+    color: var(--color-primary);
+}
+
+
+/* Resource title. */
+.resource-card h3 {
+    margin-bottom: 12px;
+
+    font-size: 20px;
+}
+
+
+/* Resource description. */
+.resource-card p {
+    font-size: 14px;
+
+    line-height: 1.6;
+}
+
+
+/* =========================================
+   NEXT STEPS
+========================================= */
+
+.next-steps-section {
+    margin-bottom: 30px;
+}
+
+
+/* Next steps card. */
+.next-steps-card {
+    max-width: 900px;
+
+    margin: 0 auto;
+
+    padding: 50px 40px;
+
+    background-color: white;
+
+    color: var(--color-primary);
+
+    border-radius: 18px;
+
+    text-align: center;
+
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+}
+
+
+/* Next steps heading. */
+.next-steps-card h2 {
+    margin-bottom: 18px;
+
+    font-size: 32px;
+}
+
+
+/* Next steps paragraph. */
+.next-steps-card p {
+    max-width: 700px;
+
+    margin: 0 auto 30px;
+
+    line-height: 1.7;
+}
+
+
+/* =========================================
+   RESULTS ACTION BUTTONS
+========================================= */
+
+.results-actions {
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    gap: 15px;
+
+    flex-wrap: wrap;
+}
+
+
+/* Primary results button. */
+.results-actions .primary-btn {
+    display: inline-block;
+
+    width: auto;
+
+    padding: 13px 25px;
+
+    background-color: var(--color-primary);
+
+    color: var(--color-text-light);
+
+    border-radius: 8px;
+
+    text-decoration: none;
+
+    font-size: var(--text-button);
+
+    transition:
+        transform 0.3s ease,
+        background-color 0.3s ease;
+}
+
+
+/* Primary button hover. */
+.results-actions .primary-btn:hover {
+    transform: scale(1.05);
+
+    background-color: var(--color-accent);
+
+    color: var(--color-primary);
+}
+
+
+/* Secondary results button. */
+.secondary-btn {
+    display: inline-block;
+
+    padding: 13px 25px;
+
+    border: 2px solid var(--color-primary);
+
+    background-color: transparent;
+
+    color: var(--color-primary);
+
+    border-radius: 8px;
+
+    text-decoration: none;
+
+    font-size: var(--text-button);
+
+    transition:
+        transform 0.3s ease,
+        background-color 0.3s ease,
+        color 0.3s ease;
+}
+
+
+/* Secondary button hover. */
+.secondary-btn:hover {
+    transform: scale(1.05);
+
+    background-color: var(--color-primary);
+
+    color: var(--color-text-light);
+}
+
+
+/* =========================================
+   RESPONSIVE DESIGN
+========================================= */
+
+@media (max-width: 1000px) {
+
+    /* Put the score and chart
+       into a single column. */
+    .results-analysis {
+        grid-template-columns: 1fr;
+    }
+
+
+    /* Reduce four skills to two columns. */
+    .skills-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+}
+
+
+@media (max-width: 768px) {
+
+    /* Reduce results page width. */
+    .results-page {
+        width: 95%;
+
+        padding: 50px 10px;
+    }
+
+
+    /* Smaller main heading. */
+    .results-hero h1 {
+        font-size: 40px;
+    }
+
+
+    /* Smaller recommendation heading. */
+    .recommendation-card h2 {
+        font-size: 28px;
+    }
+
+
+    /* Stack career cards. */
+    .careers-container {
+        grid-template-columns: 1fr;
+    }
+
+
+    /* Stack learning resources. */
+    .resources-container {
+        grid-template-columns: 1fr;
+    }
+
+
+    /* Reduce card padding. */
+    .recommendation-card,
+    .score-card,
+    .chart-card,
+    .explanation-card,
+    .next-steps-card {
+        padding: 30px 20px;
+    }
+
+}
+
+
+@media (max-width: 500px) {
+
+    /* Single column for skills. */
+    .skills-container {
+        grid-template-columns: 1fr;
+    }
+
+
+    /* Smaller results heading. */
+    .results-hero h1 {
+        font-size: 32px;
+    }
+
+
+    /* Smaller recommendation title. */
+    .recommendation-card h2 {
+        font-size: 24px;
+    }
+
+
+    /* Smaller match score. */
+    .match-score {
+        width: 110px;
+
+        height: 110px;
+    }
+
+
+    .match-score span {
+        font-size: 27px;
+    }
+
+
+    /* Stack action buttons. */
+    .results-actions {
+        flex-direction: column;
+    }
+
+
+    .results-actions .primary-btn,
+    .secondary-btn {
+        width: 100%;
+
+        text-align: center;
+    }
+
+}
+

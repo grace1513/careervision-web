@@ -1,0 +1,26 @@
+:root {
+
+    /* ============ COLOR ============ */
+    --color-primary: #2d415a;        /* deep forest green — brand / backgrounds */
+    --color-primary-dark: #1f3942;   /* darker shade for depth, borders, shadows */
+    --color-accent: #e20ebf;         /* lime — CTAs, hover states, highlights */
+    --color-text-light: #F5F0DC;     /* beige (resolved to hex for consistency) */
+    --color-surface: #FFFFFF;        /* card / form backgrounds */
+    --color-ink: #211b2e;            /* dark text used on light surfaces */
+
+    /* ============ TYPE ============ */
+    --font-display: 'Quicksand', sans-serif;   /* headings only */
+    --font-main: 'Inter', sans-serif;          /* body copy */
+    --font-mono: 'JetBrains Mono', monospace;  /* labels, step numbers, eyebrows */
+
+    /* FIX: previous scale had a missing semicolon (which silently broke
+       --text-body) and a duplicate --text-h2 declaration (20px / 30px
+       conflict). Corrected to a clean, ascending scale below. */
+    --text-h1: 40px;
+    --text-h2: 30px;
+    --text-h3: 22px;
+    --text-body: 18px;
+    --text-button: 16px;
+    --text-label: 13px;
+
+}

@@ -1,0 +1,62 @@
+/* =========================================================
+   BG-HOVER.CSS
+   =========================================================
+   A shared, reusable component: two full-viewport background
+   layers stacked behind everything, crossfaded via JS when
+   the user hovers an element with a [data-bg] attribute.
+   Include this + bg-hover.js on every page that should react.
+========================================================= */
+
+.bg-hover-layer{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    z-index: -3;
+    opacity: 0;
+    transition: opacity .6s ease;
+}
+
+.bg-hover-layer.active{
+    opacity: 1;
+}
+
+/* Video layer for the path cards: sits above the image layers
+   but below the dark overlay. Wired up by js/path-video-bg.js —
+   only used on index.html. */
+.path-bg-video{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -2;
+    opacity: 0;
+    transition: opacity .5s ease;
+}
+
+.path-bg-video.active{
+    opacity: 1;
+}
+
+/* Dark overlay on top of whichever image/video is showing, so body
+   text stays readable regardless of what's behind it. Uses
+   color-mix() to derive translucent versions of --color-primary
+   at runtime, so changing that one variable updates this too —
+   no more hardcoded RGB values to keep in sync by hand. */
+.bg-hover-overlay{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        color-mix(in srgb, var(--color-primary) 88%, transparent),
+        color-mix(in srgb, var(--color-primary) 93%, transparent)
+    );
+    z-index: -1;
+}

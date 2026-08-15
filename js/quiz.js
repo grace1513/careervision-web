@@ -139,6 +139,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const TOTAL_TIME_SECONDS = 10 * 60;
 
+    // SCORING ENGINE: speed/streak multiplier constants.
+    // Answering within FAST_ANSWER_MS of a question appearing counts
+    // as "fast" and builds a streak; consecutive fast answers scale
+    // the bonus multiplier up. A slow answer resets the streak.
+    const FAST_ANSWER_MS = 6000; // 6 seconds
+    const BASE_BONUS_POINTS = 10; // points per fast answer before multiplier
+
     const TRACK_LABELS = {
         lowLevel: "Low-Level Programming",
         arvr: "AR / VR",
@@ -152,6 +159,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
     let currentIndex = 0;
     let answers = new Array(QUESTION_BANK.length).fill(null);
+
+    // Speed/streak scoring state
+    let questionShownAt = 0;   // timestamp when the current question appeared
+    let currentStreak = 0;     // consecutive fast answers in a row
+    let bestStreak = 0;        // highest streak reached this attempt
+    let speedBonusScore = 0;   // accumulated bonus points from fast answers
 
     /* ---------------------------------------------------
        3. MEDIA EVENTS — answer-select sound
@@ -238,6 +251,11 @@ document.addEventListener("DOMContentLoaded", () => {
             introSection.classList.add("hidden");
             quizContainer.classList.remove("hidden");
 
+            // Reset scoring state in case this isn't the first attempt
+            currentStreak = 0;
+            bestStreak = 0;
+            speedBonusScore = 0;
+
             if (typeof startCountdown !== "function") {
                 console.error("startCountdown() is not defined — js/timer.js did not load.");
                 return;
@@ -272,6 +290,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function renderQuestion() {
         const q = QUESTION_BANK[currentIndex];
+
+        // Start the per-question speed clock the moment it's shown —
+        // re-stamped even on revisits, so navigating back and re-answering
+        // is judged on THIS viewing's speed, not the original one.
+        questionShownAt = Date.now();
 
         currentQEl.textContent = currentIndex + 1;
         categoryEl.textContent = q.category;
@@ -478,8 +501,26 @@ document.addEventListener("DOMContentLoaded", () => {
     --------------------------------------------------- */
 
     function selectAnswer(track) {
+        const isFirstAnswer = answers[currentIndex] === null;
         answers[currentIndex] = track;
         playSelectSound();
+
+        // SCORING ENGINE: only score speed/streak on the first time this
+        // question is answered — re-clicking after navigating back
+        // shouldn't let someone farm streak bonuses by re-selecting fast.
+        if (isFirstAnswer) {
+            const elapsed = Date.now() - questionShownAt;
+            const isFast = elapsed <= FAST_ANSWER_MS;
+
+            if (isFast) {
+                currentStreak += 1;
+                bestStreak = Math.max(bestStreak, currentStreak);
+                const multiplier = getStreakMultiplier(currentStreak);
+                speedBonusScore += Math.round(BASE_BONUS_POINTS * multiplier);
+            } else {
+                currentStreak = 0; // slow answer breaks the streak, no bonus
+            }
+        }
 
         const q = QUESTION_BANK[currentIndex];
         if (q.type !== "hotspot") {
@@ -492,6 +533,15 @@ document.addEventListener("DOMContentLoaded", () => {
         // identified by data-track rather than button text.
 
         nextBtn.disabled = false;
+    }
+
+    // Tiered multiplier: the longer the streak of fast answers, the
+    // bigger the bonus — a simple dynamic scoring curve using plain
+    // JS logic, no external library.
+    function getStreakMultiplier(streak) {
+        if (streak >= 5) return 2.0;
+        if (streak >= 3) return 1.5;
+        return 1.2; // streak of 1–2: still fast, smaller bonus
     }
 
     function trackOptionText(track) {
@@ -545,12 +595,45 @@ document.addEventListener("DOMContentLoaded", () => {
         , Object.keys(scores)[0]);
 
         console.log("Final scores:", scores, "Top track:", topTrack, TRACK_LABELS[topTrack]);
+        console.log("Speed bonus:", speedBonusScore, "Best streak:", bestStreak);
 
         sessionStorage.setItem("careervision_scores", JSON.stringify(scores));
         sessionStorage.setItem("careervision_top_track", topTrack);
+        sessionStorage.setItem("careervision_speed_bonus", String(speedBonusScore));
+        sessionStorage.setItem("careervision_best_streak", String(bestStreak));
 
         quizContainer.classList.add("hidden");
         quizCompleteSection.classList.remove("hidden");
+
+        renderSpeedStats();
+    }
+
+    // Injects a small stats readout into the completion screen —
+    // built in JS rather than requiring a quiz.html edit, so this
+    // feature works even against your existing markup.
+    function renderSpeedStats() {
+        const existing = quizCompleteSection.querySelector(".speed-stats");
+        if (existing) existing.remove(); // avoid duplicating on repeat calls
+
+        const statsEl = document.createElement("div");
+        statsEl.className = "speed-stats";
+        statsEl.innerHTML = `
+            <div class="speed-stat">
+                <i class="ph ph-lightning"></i>
+                <span>${speedBonusScore} Speed Bonus Points</span>
+            </div>
+            <div class="speed-stat">
+                <i class="ph ph-fire"></i>
+                <span>Best Streak: ${bestStreak}</span>
+            </div>
+        `;
+
+        const heading = quizCompleteSection.querySelector("h2");
+        if (heading) {
+            heading.insertAdjacentElement("afterend", statsEl);
+        } else {
+            quizCompleteSection.appendChild(statsEl);
+        }
     }
 
     viewResultsBtn.addEventListener("click", () => {

@@ -15,22 +15,26 @@
 
 document.addEventListener("DOMContentLoaded", () => {
 
-    // TEMP DEBUG: confirms this script actually loaded and ran.
-    console.log("quiz.js: DOMContentLoaded fired, script is running.");
-
     /* ---------------------------------------------------
        1. QUESTION BANK
     --------------------------------------------------- */
 
     const QUESTION_BANK = [
         {
+            // INTERACTIVE MEDIA: Image Hotspot / Coordinate Selection.
+            // Instead of text buttons, this question renders an SVG
+            // "career map" into #question-media. Each zone is an SVG
+            // <g> with a data-track attribute; clicking anywhere inside
+            // that group (circle, icon, or label) records the answer —
+            // this is the "SVG overlay" coordinate-selection approach.
+            type: "hotspot",
             category: "Interests",
-            question: "Which activity sounds the most enjoyable to you?",
-            options: [
-                { text: "Optimizing code to run faster on limited hardware", track: "lowLevel" },
-                { text: "Designing an immersive 3D world users can walk through", track: "arvr" },
-                { text: "Building a website from front-end to back-end", track: "fullstack" },
-                { text: "Teaching a computer to recognize patterns in data", track: "ml" }
+            question: "Click the zone on the map that excites you most.",
+            zones: [
+                { track: "lowLevel", cx: 150, cy: 130, label: "Systems & Hardware" },
+                { track: "arvr", cx: 450, cy: 130, label: "Immersive Worlds" },
+                { track: "fullstack", cx: 150, cy: 330, label: "Web Applications" },
+                { track: "ml", cx: 450, cy: 330, label: "Data & Intelligence" }
             ]
         },
         {
@@ -104,8 +108,16 @@ document.addEventListener("DOMContentLoaded", () => {
             ]
         },
         {
+            // INTERACTIVE MEDIA: Video Scenario Question. The video
+            // plays until it hits `pauseAt` seconds, at which point a
+            // 'timeupdate' listener pauses it and reveals the decision
+            // prompt below — the student can't answer until that point
+            // is reached (or they scrub/skip to it themselves).
+            type: "video",
             category: "Motivation",
-            question: "What motivates you most in software engineering?",
+            question: "Watch the clip below. When it pauses, choose what draws you in most.",
+            videoSrc: "Video/path-fullstack.mp4",
+            pauseAt: 3, // seconds — adjust to match your actual clip length
             options: [
                 { text: "Squeezing every bit of performance out of a system", track: "lowLevel" },
                 { text: "Creating experiences people can step inside", track: "arvr" },
@@ -125,7 +137,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     ];
 
-    const TOTAL_TIME_SECONDS = 10 * 10; // 10 questions, 10 seconds each
+    const TOTAL_TIME_SECONDS = 10 * 60;
 
     const TRACK_LABELS = {
         lowLevel: "Low-Level Programming",
@@ -178,6 +190,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const categoryEl = document.getElementById("question-category");
     const questionTextEl = document.getElementById("question-text");
+    const questionMedia = document.getElementById("question-media");
     const answersContainer = document.getElementById("answers-container");
 
     const prevBtn = document.getElementById("previous-button");
@@ -190,8 +203,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const viewResultsBtn = document.getElementById("view-results");
 
     if (!startBtn || !quizContainer) {
-        // TEMP DEBUG: makes it obvious on-screen if quiz.js can't find
-        // the elements it needs — remove once confirmed working.
+        // Safety check: log what's missing instead of alerting (alert()
+        // popups aren't permitted per the assignment's UI feedback rules).
         const missing = [];
         if (!introSection) missing.push("#quiz-introduction");
         if (!startBtn) missing.push("#start-quiz");
@@ -201,6 +214,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if (!progressBar) missing.push("#progress-bar");
         if (!categoryEl) missing.push("#question-category");
         if (!questionTextEl) missing.push("#question-text");
+        if (!questionMedia) missing.push("#question-media");
         if (!answersContainer) missing.push("#answers-container");
         if (!prevBtn) missing.push("#previous-button");
         if (!nextBtn) missing.push("#next-button");
@@ -209,15 +223,9 @@ document.addEventListener("DOMContentLoaded", () => {
         if (!quizCompleteSection) missing.push("#quiz-complete");
         if (!viewResultsBtn) missing.push("#view-results");
 
-        if (missing.length) {
-            alert("quiz.js can't find these elements: " + missing.join(", "));
-        } else {
-            alert("quiz.js loaded but startBtn/quizContainer check still failed unexpectedly.");
-        }
+        console.error("quiz.js can't find these elements:", missing.join(", ") || "(unknown)");
         return;
     }
-
-    console.log("quiz.js: all elements found, start button listener attaching now.");
 
     /* ---------------------------------------------------
        5. START
@@ -227,12 +235,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
     startBtn.addEventListener("click", () => {
         try {
-            console.log("Start button clicked.");
             introSection.classList.add("hidden");
             quizContainer.classList.remove("hidden");
 
             if (typeof startCountdown !== "function") {
-                alert("startCountdown() is not defined — js/timer.js did not load. Check the file path/name.");
+                console.error("startCountdown() is not defined — js/timer.js did not load.");
                 return;
             }
 
@@ -242,9 +249,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
             renderQuestion();
         } catch (err) {
-            // TEMP DEBUG: surfaces the real error directly on screen.
-            alert("Error starting quiz: " + err.message);
-            console.error(err);
+            console.error("Error starting quiz:", err);
         }
     });
 
@@ -273,6 +278,32 @@ document.addEventListener("DOMContentLoaded", () => {
         questionTextEl.textContent = q.question;
         progressBar.style.width = `${((currentIndex + 1) / QUESTION_BANK.length) * 100}%`;
 
+        if (q.type === "hotspot") {
+            renderHotspotQuestion(q);
+        } else if (q.type === "video") {
+            renderVideoQuestion(q);
+        } else {
+            renderChoiceQuestion(q);
+        }
+
+        prevBtn.disabled = currentIndex === 0;
+        nextBtn.textContent = ""; // rebuild below so the arrow icon survives
+        nextBtn.append(currentIndex === QUESTION_BANK.length - 1 ? "See Results " : "Next ");
+        const arrowIcon = document.createElement("i");
+        arrowIcon.className = "ph ph-arrow-right";
+        nextBtn.appendChild(arrowIcon);
+        nextBtn.disabled = answers[currentIndex] === null;
+    }
+
+    /* ---------------------------------------------------
+       7a. RENDER A STANDARD MULTIPLE-CHOICE QUESTION
+    --------------------------------------------------- */
+
+    function renderChoiceQuestion(q) {
+        questionMedia.classList.add("hidden");
+        questionMedia.innerHTML = "";
+        answersContainer.classList.remove("hidden");
+
         answersContainer.innerHTML = "";
         q.options.forEach((option) => {
             const btn = document.createElement("button");
@@ -287,14 +318,159 @@ document.addEventListener("DOMContentLoaded", () => {
             btn.addEventListener("click", () => selectAnswer(option.track));
             answersContainer.appendChild(btn);
         });
+    }
 
-        prevBtn.disabled = currentIndex === 0;
-        nextBtn.textContent = ""; // rebuild below so the arrow icon survives
-        nextBtn.append(currentIndex === QUESTION_BANK.length - 1 ? "See Results " : "Next ");
-        const arrowIcon = document.createElement("i");
-        arrowIcon.className = "ph ph-arrow-right";
-        nextBtn.appendChild(arrowIcon);
-        nextBtn.disabled = answers[currentIndex] === null;
+    /* ---------------------------------------------------
+       7b. RENDER AN IMAGE HOTSPOT / SVG COORDINATE QUESTION
+       Builds an inline SVG with one clickable <g> per zone.
+       Uses a viewBox (not fixed pixels) so it scales responsively
+       inside its container — real "coordinate selection" via SVG
+       overlay, no external image file needed.
+    --------------------------------------------------- */
+
+    function renderHotspotQuestion(q) {
+        answersContainer.innerHTML = "";
+        answersContainer.classList.add("hidden"); // this question type doesn't use the button list
+
+        questionMedia.classList.remove("hidden");
+        questionMedia.innerHTML = buildHotspotSVG(q);
+
+        // Wire up click handling on each zone group
+        const zoneEls = questionMedia.querySelectorAll(".hotspot-zone");
+        zoneEls.forEach((zoneEl) => {
+            const track = zoneEl.dataset.track;
+
+            if (answers[currentIndex] === track) {
+                zoneEl.classList.add("selected");
+            }
+
+            zoneEl.addEventListener("click", () => {
+                selectAnswer(track);
+                zoneEls.forEach((z) => z.classList.toggle("selected", z.dataset.track === track));
+            });
+        });
+    }
+
+    // Builds the raw SVG markup string for the hotspot question.
+    // Each zone is a circle + a simple hand-drawn icon (no external
+    // image assets) + a text label, grouped so the whole thing is
+    // one clickable target per specialization.
+    function buildHotspotSVG(q) {
+        const zoneMarkup = q.zones.map((zone) => `
+            <g class="hotspot-zone" data-track="${zone.track}" tabindex="0" role="button" aria-label="${zone.label}">
+                <circle class="hotspot-ring" cx="${zone.cx}" cy="${zone.cy}" r="55"></circle>
+                ${hotspotIcon(zone.track, zone.cx, zone.cy)}
+                <text class="hotspot-label" x="${zone.cx}" y="${zone.cy + 85}" text-anchor="middle">${zone.label}</text>
+            </g>
+        `).join("");
+
+        return `
+            <svg viewBox="0 0 600 460" class="hotspot-svg" role="img" aria-label="Career interest map — click a zone">
+                ${zoneMarkup}
+            </svg>
+        `;
+    }
+
+    // Tiny hand-drawn vector icon per track, built from basic SVG
+    // shapes only (no image files, no icon font — this needs to work
+    // inside dynamically-generated SVG markup).
+    function hotspotIcon(track, cx, cy) {
+        switch (track) {
+            case "lowLevel": // a little chip with pins
+                return `
+                    <rect x="${cx - 18}" y="${cy - 18}" width="36" height="36" rx="4" class="hotspot-icon-shape"></rect>
+                    ${[-12, 0, 12].map((o) => `
+                        <line x1="${cx + o}" y1="${cy - 26}" x2="${cx + o}" y2="${cy - 18}" class="hotspot-icon-line"></line>
+                        <line x1="${cx + o}" y1="${cy + 18}" x2="${cx + o}" y2="${cy + 26}" class="hotspot-icon-line"></line>
+                    `).join("")}
+                `;
+            case "arvr": // a headset shape
+                return `
+                    <rect x="${cx - 22}" y="${cy - 10}" width="44" height="24" rx="10" class="hotspot-icon-shape"></rect>
+                    <circle cx="${cx - 10}" cy="${cy + 2}" r="5" class="hotspot-icon-lens"></circle>
+                    <circle cx="${cx + 10}" cy="${cy + 2}" r="5" class="hotspot-icon-lens"></circle>
+                `;
+            case "fullstack": // a browser window
+                return `
+                    <rect x="${cx - 22}" y="${cy - 16}" width="44" height="32" rx="3" class="hotspot-icon-shape"></rect>
+                    <line x1="${cx - 22}" y1="${cy - 6}" x2="${cx + 22}" y2="${cy - 6}" class="hotspot-icon-line"></line>
+                `;
+            case "ml": // three connected nodes
+                return `
+                    <circle cx="${cx}" cy="${cy - 16}" r="5" class="hotspot-icon-lens"></circle>
+                    <circle cx="${cx - 16}" cy="${cy + 12}" r="5" class="hotspot-icon-lens"></circle>
+                    <circle cx="${cx + 16}" cy="${cy + 12}" r="5" class="hotspot-icon-lens"></circle>
+                    <line x1="${cx}" y1="${cy - 16}" x2="${cx - 16}" y2="${cy + 12}" class="hotspot-icon-line"></line>
+                    <line x1="${cx}" y1="${cy - 16}" x2="${cx + 16}" y2="${cy + 12}" class="hotspot-icon-line"></line>
+                    <line x1="${cx - 16}" y1="${cy + 12}" x2="${cx + 16}" y2="${cy + 12}" class="hotspot-icon-line"></line>
+                `;
+            default:
+                return "";
+        }
+    }
+
+    /* ---------------------------------------------------
+       7c. RENDER A VIDEO SCENARIO QUESTION
+       Plays a video; a 'timeupdate' listener watches for it
+       reaching `pauseAt` seconds, then pauses playback and
+       reveals the decision options below. The student can't
+       answer before that point is reached (Next stays disabled
+       via the normal answers[currentIndex] === null check).
+    --------------------------------------------------- */
+
+    function renderVideoQuestion(q) {
+        questionMedia.classList.remove("hidden");
+        questionMedia.innerHTML = "";
+
+        answersContainer.classList.add("hidden"); // revealed once the pause point is hit
+        answersContainer.innerHTML = "";
+
+        const video = document.createElement("video");
+        video.src = q.videoSrc;
+        video.controls = true;
+        video.className = "scenario-video";
+        video.setAttribute("aria-label", "Scenario video — watch until it pauses");
+
+        let revealed = false;
+
+        // The core requirement: a timeupdate listener that catches the
+        // video crossing the pauseAt timestamp and pauses it there.
+        video.addEventListener("timeupdate", () => {
+            if (!revealed && video.currentTime >= q.pauseAt) {
+                video.pause();
+                revealed = true;
+                revealVideoOptions(q);
+            }
+        });
+
+        questionMedia.appendChild(video);
+
+        // If the student already answered this question before (came
+        // back via Previous), show the options immediately rather than
+        // making them re-watch to the pause point.
+        if (answers[currentIndex] !== null) {
+            revealed = true;
+            revealVideoOptions(q);
+        }
+    }
+
+    function revealVideoOptions(q) {
+        answersContainer.classList.remove("hidden");
+        answersContainer.innerHTML = "";
+
+        q.options.forEach((option) => {
+            const btn = document.createElement("button");
+            btn.type = "button";
+            btn.className = "answer-option";
+            btn.textContent = option.text;
+
+            if (answers[currentIndex] === option.track) {
+                btn.classList.add("selected");
+            }
+
+            btn.addEventListener("click", () => selectAnswer(option.track));
+            answersContainer.appendChild(btn);
+        });
     }
 
     /* ---------------------------------------------------
@@ -305,9 +481,15 @@ document.addEventListener("DOMContentLoaded", () => {
         answers[currentIndex] = track;
         playSelectSound();
 
-        [...answersContainer.children].forEach((btn) => {
-            btn.classList.toggle("selected", btn.textContent === trackOptionText(track));
-        });
+        const q = QUESTION_BANK[currentIndex];
+        if (q.type !== "hotspot") {
+            [...answersContainer.children].forEach((btn) => {
+                btn.classList.toggle("selected", btn.textContent === trackOptionText(track));
+            });
+        }
+        // Hotspot zone highlighting is handled directly in
+        // renderHotspotQuestion's click listener, since zones are
+        // identified by data-track rather than button text.
 
         nextBtn.disabled = false;
     }

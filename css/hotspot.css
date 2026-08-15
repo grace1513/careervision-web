@@ -1,0 +1,98 @@
+/* =========================================
+   IMAGE HOTSPOT QUESTION
+   (Q1: click a zone on the SVG career map)
+========================================= */
+
+.question-media{
+    margin: 10px 0 20px;
+}
+
+.question-media.hidden{
+    display: none;
+}
+
+.hotspot-svg{
+    display: block;
+    width: 100%;
+    max-width: 600px;
+    height: auto;
+    margin: 0 auto;
+}
+
+.hotspot-zone{
+    cursor: pointer;
+}
+
+.hotspot-ring{
+    fill: #ffffff;
+    stroke: #ddd;
+    stroke-width: 2;
+    transition: stroke .25s ease, transform .25s ease;
+    transform-origin: center;
+    transform-box: fill-box;
+}
+
+.hotspot-zone:hover .hotspot-ring{
+    stroke: var(--color-primary);
+    transform: scale(1.05);
+}
+
+.hotspot-zone.selected .hotspot-ring{
+    stroke: var(--color-accent);
+    stroke-width: 4;
+    fill: rgba(201, 226, 14, 0.12);
+}
+
+/* Keyboard focus state — zones are focusable (tabindex="0")
+   for accessibility, not just mouse-clickable */
+.hotspot-zone:focus-visible .hotspot-ring{
+    stroke: var(--color-primary);
+    stroke-width: 3;
+    outline: none;
+}
+
+.hotspot-icon-shape{
+    fill: none;
+    stroke: var(--color-primary);
+    stroke-width: 2.5;
+}
+
+.hotspot-icon-line{
+    stroke: var(--color-primary);
+    stroke-width: 2.5;
+    stroke-linecap: round;
+}
+
+.hotspot-icon-lens{
+    fill: var(--color-primary);
+}
+
+.hotspot-zone.selected .hotspot-icon-shape,
+.hotspot-zone.selected .hotspot-icon-line{
+    stroke: var(--color-ink, #1B2E24);
+}
+
+.hotspot-zone.selected .hotspot-icon-lens{
+    fill: var(--color-ink, #1B2E24);
+}
+
+.hotspot-label{
+    font-family: var(--font-main, sans-serif);
+    font-size: 14px;
+    font-weight: 600;
+    fill: #333;
+}
+
+
+/* =========================================
+   VIDEO SCENARIO QUESTION
+========================================= */
+
+.scenario-video{
+    display: block;
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(0,0,0,.2);
+}

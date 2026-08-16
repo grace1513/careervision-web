@@ -6,7 +6,7 @@ An interactive web application that helps incoming Bachelor of Software Engineer
 
 📦 **Repository:** https://github.com/grace1513/careervision-web
 
-🎥 **Video Walkthrough:** [Watch here](YOUR_VIDEO_LINK_HERE)
+🎥 **Video Walkthrough:** [https://1drv.ms/v/c/AD9C5FB908132B2D/IQA_5WC1zKpKQqHYFI_XLshGAcJ5dcgC5da2a4vyzYKX-2c?e=2Hly2H]
 
 ---
 

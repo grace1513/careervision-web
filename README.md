@@ -3,6 +3,8 @@
 An interactive web application that helps incoming Bachelor of Software Engineering students discover which specialisation best fits their interests, strengths, and career goals — **Low-Level Programming**, **AR/VR**, **Full-Stack Web Development**, or **Machine Learning** — through a personalised, timed assessment.
 
 🔗 **Live site:** https://grace1513.github.io/careervision-web/
+
+
 📦 **Repository:** https://github.com/grace1513/careervision-web
 
 ---
@@ -110,4 +112,4 @@ BSE Specialisation Advisor Assessment — African Leadership College
 
 ## Attributions & AI Usage
 
-Full asset sourcing (fonts, icons, images, video) and an AI usage disclosure are documented in [`Sources_and_Attribution.pdf`](./Sources_and_Attribution.pdf).
+Full asset sourcing (fonts, icons, images, video) and an AI usage disclosure are documented in https://docs.google.com/document/d/1nXz7IyfXTzxM4QXvEaco37LaBwC1mLYjWulyNkpG7C0/edit?usp=sharing(./Sources_and_Attribution.pdf).

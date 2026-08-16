@@ -112,4 +112,4 @@ BSE Specialisation Advisor Assessment — African Leadership College
 
 ## Attributions & AI Usage
 
-Full asset sourcing (fonts, icons, images, video) and an AI usage disclosure are documented in https://docs.google.com/document/d/1nXz7IyfXTzxM4QXvEaco37LaBwC1mLYjWulyNkpG7C0/edit?usp=sharing(./Sources_and_Attribution.pdf).
+Full asset sourcing (fonts, icons, images, video) and an AI usage disclosure are documented in (Sources_and_Attributions.pdf).

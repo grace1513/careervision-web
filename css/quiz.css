@@ -75,7 +75,10 @@
    QUIZ INFORMATION CARDS
 ========================================= */
 
-/* Creates three information cards. */
+/* Creates three information cards. Uses a 3-column
+   grid on wide screens; collapses to 1 column at
+   900px (see responsive section) since 3 cards side
+   by side get too cramped to read below tablet width. */
 .quiz-info {
     display: grid;
 
@@ -170,8 +173,15 @@
 }
 
 
-/* Hidden elements are removed from
-   the visible page. */
+/* Generic utility class toggled entirely by JavaScript
+   (quiz.js) to switch between the intro screen, the quiz
+   card, and the completion screen — e.g.
+   introSection.classList.add("hidden") /
+   quizContainer.classList.remove("hidden"). !important is
+   used deliberately here so this always wins over any
+   more-specific display rule elsewhere in the stylesheet,
+   since "is this element visible at all" should never be
+   something another selector can silently override. */
 .hidden {
     display: none !important;
 }
@@ -216,7 +226,9 @@
 }
 
 
-/* Current question number. */
+/* Current question number — the actual digit content
+   (e.g. "3") is written into this element by quiz.js's
+   renderQuestion(); this rule only controls its size. */
 .progress-information strong {
     font-size: 20px;
 }
@@ -226,7 +238,11 @@
    TIMER
 ========================================= */
 
-/* Timer display. */
+/* Timer display. Monospace font (JetBrains Mono) is used
+   deliberately so the MM:SS text doesn't visually shift
+   width as digits change each second — a proportional font
+   would make "10:00" and "9:59" different widths, causing
+   a small layout jitter every tick. */
 .quiz-timer {
     display: flex;
 
@@ -256,10 +272,10 @@
 }
 
 
-/* Timer warning state.
-
-   JavaScript can add this class when
-   the remaining time becomes low. */
+/* Timer warning state — timer.js's updateTimerDisplay()
+   adds this class once secondsLeft crosses the
+   WARNING_THRESHOLD, giving the student an early visual
+   cue before the countdown gets critical. */
 .quiz-timer.warning {
     border-color: #ff9800;
 
@@ -269,7 +285,10 @@
 }
 
 
-/* Timer danger state. */
+/* Timer danger state — added by timer.js once secondsLeft
+   crosses DANGER_THRESHOLD (the final ~30 seconds). A
+   faster pulse (0.6s vs 1s for .warning) than the warning
+   state so the urgency is felt, not just read. */
 .quiz-timer.danger {
     border-color: #e74c3c;
 
@@ -279,7 +298,9 @@
 }
 
 
-/* Timer animation. */
+/* Shared pulse animation for both timer states above —
+   a simple scale up/down loop, kept subtle (1.05x) so it
+   reads as "urgent" without being distracting to read. */
 @keyframes timerPulse {
 
     0% {
@@ -317,10 +338,13 @@
 }
 
 
-/* Filled portion of the progress bar.
-
-   JavaScript will change its width
-   depending on the current question. */
+/* Filled portion of the progress bar. quiz.js sets this
+   element's inline style.width directly (as a percentage
+   of questions completed) on every renderQuestion() call —
+   the 10% starting value here is just a sensible default
+   before JS runs, not the actual driving logic. The
+   transition below is what makes that width change animate
+   smoothly instead of jumping instantly between questions. */
 .progress-bar {
     width: 10%;
 
@@ -352,7 +376,9 @@
 }
 
 
-/* Question category label. */
+/* Question category label — text content ("Interests",
+   "Motivation", etc.) is written in by quiz.js from each
+   question object's `category` field. */
 .question-category {
     display: inline-block;
 
@@ -388,6 +414,11 @@
 
 /* =========================================
    QUESTION MEDIA
+   Shared container for the two interactive media question
+   types (Image Hotspot's inline SVG, and the Video Scenario
+   question's <video> element) — quiz.js swaps this
+   container's innerHTML and toggles .hidden on it depending
+   on the current question's `type` field.
 ========================================= */
 
 /* Container for interactive images,
@@ -421,7 +452,9 @@
 }
 
 
-/* Video player. */
+/* Video player — sized to match the hotspot SVG's max-width
+   so both interactive media types feel visually consistent
+   even though one renders an <svg> and the other a <video>. */
 .question-media video {
     width: 100%;
 
@@ -447,9 +480,11 @@
 }
 
 
-/* Individual answer button.
-
-   JavaScript will create these buttons. */
+/* Individual answer button — these elements don't exist in
+   the HTML; quiz.js's renderChoiceQuestion() creates one
+   <button class="answer-option"> per option in the current
+   question and appends it here, attaching a click listener
+   that calls selectAnswer(track) on each. */
 .answer-option {
     display: flex;
 
@@ -492,10 +527,10 @@
 }
 
 
-/* Selected answer.
-
-   JavaScript should add this class
-   to the selected answer. */
+/* Selected answer state — quiz.js's selectAnswer() toggles
+   this class onto whichever button matches the chosen
+   track's text, and removes it from the others, so only one
+   answer per question ever shows as selected at a time. */
 .answer-option.selected {
     border-color: var(--color-primary);
 
@@ -516,6 +551,27 @@
     margin-right: 12px;
 
     font-size: 22px;
+}
+
+
+/* =========================================
+   QUIZ LOCKED STATE
+   BUG FIX: quiz.js's handleTimeExpired() adds this class to
+   .quiz-card when the countdown hits zero, but no rule for
+   it existed in this file — meaning the "locked" state had
+   no visual effect and answer buttons stayed clickable after
+   time expired. This dims the card and disables pointer
+   events on every answer option so nothing can be clicked
+   once the timeout message is showing.
+========================================= */
+
+.quiz-card.quiz-locked {
+    opacity: 0.7;
+    pointer-events: none;
+}
+
+.quiz-card.quiz-locked .answer-option {
+    cursor: not-allowed;
 }
 
 
@@ -554,7 +610,11 @@
 }
 
 
-/* Disabled Next button. */
+/* Disabled Next button state — quiz.js sets the native
+   `disabled` attribute (not just a CSS class) whenever the
+   current question has no answer recorded yet
+   (answers[currentIndex] === null), which also blocks the
+   click event from firing at all, not just the visual style. */
 .quiz-navigation button:disabled {
     opacity: 0.4;
 
@@ -665,7 +725,12 @@
    TIMEOUT MESSAGE
 ========================================= */
 
-/* Displays when the timer reaches zero. */
+/* Displays when the timer reaches zero — this element
+   exists in quiz.html already (not JS-generated); quiz.js's
+   handleTimeExpired() just removes .hidden from it and adds
+   .quiz-locked to .quiz-card (see quiz-locked rules,
+   typically defined alongside .answer-option to disable
+   further clicks once time is up). */
 .timeout-message {
     padding: 50px 30px;
 
@@ -711,7 +776,11 @@
    QUIZ COMPLETION
 ========================================= */
 
-/* Completion screen. */
+/* Completion screen — quiz.js's finishQuiz() hides
+   .quiz-container and removes .hidden from this section
+   once all questions are answered (or time runs out).
+   renderSpeedStats() also injects a .speed-stats block into
+   this section showing the streak/speed bonus score. */
 .quiz-complete {
     max-width: 750px;
 
@@ -779,6 +848,11 @@
 
 /* =========================================
    RESPONSIVE DESIGN
+   Three breakpoints (900px / 768px / 500px) chosen to cover
+   tablet, large-phone, and small-phone widths respectively —
+   each step down simplifies the layout further (grid columns
+   collapse, buttons stack, font sizes shrink) rather than
+   just shrinking everything uniformly.
 ========================================= */
 
 @media (max-width: 900px) {
@@ -828,7 +902,10 @@
     }
 
 
-    /* Stack quiz navigation buttons. */
+    /* Stack quiz navigation buttons — reversed order
+       (column-reverse) so Next stays visually on top/first,
+       matching the primary action being the one you'd expect
+       to reach first on mobile. */
     .quiz-navigation {
         flex-direction: column-reverse;
 

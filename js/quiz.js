@@ -137,7 +137,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     ];
 
-    const TOTAL_TIME_SECONDS = 10 * 60;
+    const TOTAL_TIME_SECONDS = 10 * 10;
 
     // SCORING ENGINE: speed/streak multiplier constants.
     // Answering within FAST_ANSWER_MS of a question appearing counts

@@ -4,8 +4,9 @@ An interactive web application that helps incoming Bachelor of Software Engineer
 
 🔗 **Live site:** https://grace1513.github.io/careervision-web/
 
-
 📦 **Repository:** https://github.com/grace1513/careervision-web
+
+🎥 **Video Walkthrough:** [Watch here](YOUR_VIDEO_LINK_HERE)
 
 ---
 
@@ -40,7 +41,7 @@ CareerVision guides a student through four stages:
 - **CSS3** — custom properties (design tokens), Flexbox/Grid layouts, responsive breakpoints, no CSS framework
 - **JavaScript (ES6+)** — vanilla JS throughout; no frameworks or external libraries
 - **Canvas 2D API** — hand-built radar chart, used natively (no Chart.js or similar)
-- [Google Fonts](https://fonts.google.com/) (Quicksand, Inter, JetBrains Mono) and [Phosphor Icons](https://phosphoricons.com/) — see `Sources_and_Attribution.pdf` for full licensing details
+- [Google Fonts](https://fonts.google.com/) (Quicksand, Inter, JetBrains Mono) and [Phosphor Icons](https://phosphoricons.com/) — see `Sources_and_Attributions.pdf` for full licensing details
 
 ---
 
@@ -74,7 +75,7 @@ careervision-web/
 ├── Images/                     # Background images (sourced from Pexels)
 ├── Video/                      # Path-card background videos (created in Canva)
 │
-├── Sources_and_Attribution.pdf # Full asset attributions + AI usage disclosure
+├── Sources_and_Attributions.pdf # Full asset attributions + AI usage disclosure
 └── README.md
 ```
 
@@ -89,6 +90,15 @@ careervision-web/
 2. Open the folder in VS Code (or your editor of choice).
 3. Serve it with a local server — e.g. the VS Code **Live Server** extension — and open `index.html`.
    (Opening the HTML file directly via `file://` may block some features like `sessionStorage`.)
+
+---
+
+## Video Walkthrough
+
+A 10–15 minute screen recording covering a full feature demonstration of all four pages, plus a code walkthrough of the form validation logic, dynamic DOM updates, Canvas rendering, and timer implementation, is available here:
+
+👉 **[https://1drv.ms/v/c/AD9C5FB908132B2D/IQA_5WC1zKpKQqHYFI_XLshGAcJ5dcgC5da2a4vyzYKX-2c?e=2Hly2H]**
+
 
 ---
 
@@ -112,4 +122,4 @@ BSE Specialisation Advisor Assessment — African Leadership College
 
 ## Attributions & AI Usage
 
-Full asset sourcing (fonts, icons, images, video) and an AI usage disclosure are documented in [Sources_and_Attributions.pdf](Sources_and_Attributions.pdf).
+Full asset sourcing (fonts, icons, images, video) and an AI usage disclosure are documented in [`Sources_and_Attributions.pdf`](./Sources_and_Attributions.pdf).

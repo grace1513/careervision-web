@@ -300,6 +300,33 @@ h1, h2, h3{
 
 
 /* =========================================
+   FOOTER QR CODE
+========================================= */
+
+.footer-qr{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.footer-qr h3{
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: .08em;
+    color: var(--color-accent);
+    margin-bottom: 14px;
+}
+
+.footer-qr img{
+    width: 90px;
+    height: 90px;
+    border-radius: 6px;
+    background-color: white;
+    padding: 6px;
+}
+
+
+/* =========================================
    FOOTER
 ========================================= */
 
@@ -405,6 +432,10 @@ h1, h2, h3{
     }
 
     .footer-links{
+        align-items: center;
+    }
+
+    .footer-qr{
         align-items: center;
     }
 
